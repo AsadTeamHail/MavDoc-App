@@ -2,9 +2,9 @@ import React,{useState} from 'react';
 import { StyleSheet,Text,View,ImageBackground,TextInput,TouchableOpacity,Alert,ActivityIndicator,Image} from 'react-native';
 import axios from 'axios';
 
-import API from './../../api/index.json'
+import API from '../../api/index.json' //API imports from api folder/index.json
 
-const SignUp = () => {
+const SignUp = ({navigation}) => {
 
   //signup form states
   const [fullName, setFullName] = useState('')
@@ -13,23 +13,53 @@ const SignUp = () => {
 
   //condition states
   const [loading,setLoading] = useState(false)
-  const [signUp,setSignUp] = useState(!true)
+  const [signUp,setSignUp] = useState(false)
 
-  const handleSubmit = () => {
+  //SignUp req to API
+  const handleSignUp = () => {
     setLoading(true)
     if(phone.length>6 && fullName.length>3 && company.length>3){
       setTimeout(
         async function() {
-          await axios.post(API.CreateUserSignUp,
+          await axios.post(API.PostUserSignUp,
             {
-              fullname:fullName,
-              company:company,
-              phone:phone,
-              type:'customer',
+            fullname:fullName,
+            company:company,
+            phone:phone,
+            type:'customer',
             }).then((r)=>{
-            console.log(r.data),
-            setLoading(false), 
-            setCodeScreen(true)
+            if(r.data.status === 'success'){
+              setLoading(false)
+              navigation.navigate("OTP",{phone:r.data.customerVerification.phone})
+            }else if(r.data.status === 'exists'){
+              setLoading(false)
+              Alert.alert("Email Error","Email already exists. Please try again.");
+            }
+          })
+      }, 3000);
+    }
+    if(phone.length<6){
+      Alert.alert("Email Error","Please Enter a valid email");
+      setLoading(false);
+    }
+  }
+
+  //Login req to API
+  const handleLogin = () => {
+    setLoading(true)
+    if(phone.length>6){
+      setTimeout(
+        async function() {
+          await axios.post(API.PostUserLogin,{phone:phone,type:'customer',})
+          .then((r)=>{
+            if(r.data.status == 'success'){
+              console.log(r.data)
+              setLoading(false)
+              navigation.navigate("OTP",{phone:r.data.customerVerification.phone})
+            }else if(r.data.status == 'invalid'){
+              setLoading(false)
+              Alert.alert("Invalid","Email does not exist. Please try again.");
+            }
           })
       }, 3000);
     }
@@ -41,7 +71,8 @@ const SignUp = () => {
 
   return (
     <View style={{flex:1}}>
-      {!loading ? <ImageBackground source={require('../../assets/bg.png')} resizeMode='cover' style={styles.image}>
+      {!loading ? 
+      <ImageBackground source={require('../../assets/bg.png')} resizeMode='cover' style={styles.image}>
        {!signUp ? 
        //Login Form
         <View style={styles.container}>
@@ -58,7 +89,7 @@ const SignUp = () => {
              </TouchableOpacity>
             </View>
           </View>
-          <TouchableOpacity style={styles.btn} onPress={()=>handleSubmit()}>
+          <TouchableOpacity style={styles.btn} onPress={()=>handleLogin()}>
               <Text style={{color:'white'}}>Login</Text>
           </TouchableOpacity>
          </View>
@@ -82,7 +113,7 @@ const SignUp = () => {
               </TouchableOpacity>
             </View>
             </View>
-            <TouchableOpacity style={styles.btn} onPress={()=>handleSubmit()}>
+            <TouchableOpacity style={styles.btn} onPress={()=>handleSignUp()}>
                 <Text style={{color:'white'}}>Sign Up</Text>
             </TouchableOpacity>
         </View>
@@ -91,7 +122,7 @@ const SignUp = () => {
       : //loader
       <ImageBackground source={require('../../assets/bg.png')} resizeMode='cover' style={styles.image}>
         <View style={{alignItems:'center'}}>
-          <ActivityIndicator size={'large'} color={'#1A6DBB'} />
+          <ActivityIndicator size={'large'} color={'#2661c7'} />
           <Text>Please Wait</Text>
         </View>
       </ImageBackground>

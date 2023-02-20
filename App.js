@@ -10,8 +10,8 @@ import {Image, View} from 'react-native';
 import HomeScreen from './components/screens/Home';
 import SettingScreen from './components/screens/Home';
 import TestScreen from './components/screens/Test';
-import LoginScreen from './components/screens/Login';
-import SignUpScreen from './components/screens/SignUp'
+import AuthScreen from './components/screens/Auth'
+import OTPScreen from './components/screens/OTP';
 
 const theme = {
   ...DefaultTheme,
@@ -41,23 +41,23 @@ function App() {
                 }
               : undefined,
           })}>
-{/* 
-          <Tab.Screen
-            name="Login"
+
+          {/* <Tab.Screen
+            name="Auth"
               options={{
                 headerShown: false,
                 tabBarStyle: {display: 'none'}
               }}
-            component={LoginScreen}
+            component={AuthScreen}
           /> */}
 
           <Tab.Screen
-            name="SignUp"
+            name="OTP"
               options={{
                 headerShown: false,
                 tabBarStyle: {display: 'none'}
               }}
-            component={SignUpScreen}
+            component={OTPScreen}
           />
 
            <Tab.Screen

@@ -1,3 +1,5 @@
-{
-    "CreateUserSignUp":"https://complete-dorian-swordfish.glitch.me/auth/signUp"
+{ 
+    "PostUserSignUp":"https://gusty-east-tote.glitch.me/auth/signUp",
+    "PostUserLogin":"https://gusty-east-tote.glitch.me/auth/login",
+    "PostUserVerification":"https://gusty-east-tote.glitch.me/auth/verification"
 }
