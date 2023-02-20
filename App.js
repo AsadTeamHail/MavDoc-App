@@ -34,22 +34,33 @@ function App() {
       <NavigationContainer>
         <Tab.Navigator
           screenOptions={({route}) => ({
-            tabBarStyle: {backgroundColor: '#2661c7',width:'90%',height:'10%',alignSelf:'center',borderRadius:10,marginBottom:15,padding:0},
-            tabBarButton: ['Login','SignUp','OTP'].includes(route.name)
+            tabBarStyle: {
+            backgroundColor: '#2661c7',
+            maxWidth:'88%',
+            height:'8%',
+            alignSelf:'center',
+            borderRadius:10,
+            marginBottom:15,
+            position: 'absolute',
+            left: 43,
+            right: 0,
+            bottom: 0,
+            elevation: 0},
+            tabBarButton: ['Auth','OTP'].includes(route.name)
               ? () => {
                   return null;
                 }
               : undefined,
           })}>
 
-          {/* <Tab.Screen
+          <Tab.Screen
             name="Auth"
               options={{
                 headerShown: false,
                 tabBarStyle: {display: 'none'}
               }}
             component={AuthScreen}
-          /> */}
+          />
 
           <Tab.Screen
             name="OTP"
