@@ -39,7 +39,7 @@ const SignUp = () => {
   return (
     <View style={{flex:1}}>
       {!loading ? <ImageBackground source={require('../../assets/bg.png')} resizeMode='cover' style={styles.image}>
-       {!codeScreen ? //SignUp Forms
+       {!codeScreen ? //SignUp Form
        <View style={styles.container}>
           <View style={{alignSelf:'center',padding:30}}>
               <Text style={{fontSize:40,color:'#2661c7',fontWeight:'600'}}>Sign up</Text>
