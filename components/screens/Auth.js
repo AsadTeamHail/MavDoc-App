@@ -28,9 +28,10 @@ const SignUp = ({navigation}) => {
             phone:phone,
             type:'customer',
             }).then((r)=>{
+              console.log(r.data)
             if(r.data.status === 'success'){
               setLoading(false)
-              navigation.navigate("OTP",{phone:r.data.customerVerification.phone})
+              navigation.navigate("OTP",{phone:r.data.customer.phone})
             }else if(r.data.status === 'exists'){
               setLoading(false)
               Alert.alert("Email Error","Email already exists. Please try again.");
@@ -53,7 +54,6 @@ const SignUp = ({navigation}) => {
           await axios.post(API.PostUserLogin,{phone:phone,type:'customer',})
           .then((r)=>{
             if(r.data.status == 'success'){
-              console.log(r.data)
               setLoading(false)
               navigation.navigate("OTP",{phone:r.data.customerVerification.phone})
             }else if(r.data.status == 'invalid'){
