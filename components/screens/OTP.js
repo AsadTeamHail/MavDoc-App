@@ -1,6 +1,8 @@
 import React,{useState,useRef} from 'react'
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, ImageBackground, ActivityIndicator, Image, Alert} from 'react-native'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useRoute } from "@react-navigation/native"
+import jwt_decode from "jwt-decode";
 import axios from 'axios'
 
 import API from '../../api/index.json' //API imports from api folder/index.json
@@ -40,11 +42,9 @@ const OTPScreen = ({navigation}) => {
               type:'customer'
             }).then((r)=>{
               console.log(r.data)
-            if(r.data.message === 'success'){
-              console.log(r.data)
-              setLoading(false)
+            if(r.data.message === 'Success'){
+              storeValues(r.data.token)
             }else if (r.data.message === 'Invalid'){
-              console.log(r.data)
               Alert.alert("Error","Please Enter the 4 Digit Code recieved on E-mail Correctly!");
               setLoading(false)
             }
@@ -55,6 +55,17 @@ const OTPScreen = ({navigation}) => {
       Alert.alert("Enter the code","Please Enter the 4 Digit Code recieved on E-mail.");
       setLoading(false);
     }
+  }
+
+  const storeValues = async(token) => {
+    let values = jwt_decode(token)
+    console.log(values)
+    await AsyncStorage.setItem('@user_id', values.loginId)
+    await AsyncStorage.setItem('@token', token)
+    await AsyncStorage.setItem('@phone', values.phone)
+    await AsyncStorage.setItem('@company', values.company)
+    setLoading(false)
+    navigation.navigate("Home")
   }
  
   return (

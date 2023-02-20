@@ -15,7 +15,7 @@ const SignUp = ({navigation}) => {
   const [loading,setLoading] = useState(false)
   const [signUp,setSignUp] = useState(false)
 
-  //SignUp req to API
+  //signup req to API
   const handleSignUp = () => {
     setLoading(true)
     if(phone.length>6 && fullName.length>3 && company.length>3){
@@ -44,7 +44,7 @@ const SignUp = ({navigation}) => {
     }
   }
 
-  //Login req to API
+  //login req to API
   const handleLogin = () => {
     setLoading(true)
     if(phone.length>6){

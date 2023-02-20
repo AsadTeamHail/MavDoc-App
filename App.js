@@ -35,7 +35,7 @@ function App() {
         <Tab.Navigator
           screenOptions={({route}) => ({
             tabBarStyle: {backgroundColor: '#2661c7',width:'90%',height:'10%',alignSelf:'center',borderRadius:10,marginBottom:15,padding:0},
-            tabBarButton: ['Login','SignUp'].includes(route.name)
+            tabBarButton: ['Login','SignUp','OTP'].includes(route.name)
               ? () => {
                   return null;
                 }

@@ -1,10 +1,11 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, ImageBackground } from 'react-native'
 import React from 'react'
 
 const Home = () => {
   return (
-    <View>
-      <Text>Home</Text>
+    <View style={{flex:1}}>
+      <ImageBackground source={require('../../assets/bg.png')} resizeMode='cover' style={styles.image}>
+      </ImageBackground>
     </View>
   )
 }
@@ -12,6 +13,12 @@ const Home = () => {
 export default Home
 
 const styles = StyleSheet.create({
-container:{}
+container:{
+ alignSelf:'center',
+},
+image: {
+ flex: 1,
+ justifyContent:'center'
+},
 
 })
