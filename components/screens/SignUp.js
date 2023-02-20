@@ -1,16 +1,19 @@
 import React,{useState} from 'react';
-import { StyleSheet,Text,View,ImageBackground,TextInput,TouchableOpacity,Alert,ActivityIndicator} from 'react-native';
+import { StyleSheet,Text,View,ImageBackground,TextInput,TouchableOpacity,Alert,ActivityIndicator,Image} from 'react-native';
 import axios from 'axios';
 
 import API from './../../api/index.json'
 
 const SignUp = () => {
+
+  //signup form states
   const [fullName, setFullName] = useState('')
   const [company, setCompany] = useState('')
   const [phone, setPhone] = useState('')
 
+  //condition states
   const [loading,setLoading] = useState(false)
-  const [codeScreen,setCodeScreen] = useState(false)
+  const [signUp,setSignUp] = useState(!true)
 
   const handleSubmit = () => {
     setLoading(true)
@@ -39,8 +42,28 @@ const SignUp = () => {
   return (
     <View style={{flex:1}}>
       {!loading ? <ImageBackground source={require('../../assets/bg.png')} resizeMode='cover' style={styles.image}>
-       {!codeScreen ? //SignUp Form
-       <View style={styles.container}>
+       {!signUp ? 
+       //Login Form
+        <View style={styles.container}>
+          <View style={{alignSelf:'center',padding:30}}>
+            <Text style={{fontSize:40,color:'#2661c7',fontWeight:'600'}}>Login</Text>
+          </View>
+          <View style={styles.input_view}>
+            <TextInput style={styles.input} placeholder='Email' onChangeText={(x)=>setPhone(x)}/>
+            <View style={{flexDirection:'row',marginTop:10}}>
+            <Image source={require('../../assets/flag.png')} style={{height:12,width:12,top:3}}/>
+            <Text style={{color:'#2661c7',fontWeight:'600',fontSize:12}}> Don't have an account? </Text>
+             <TouchableOpacity onPress={()=>setSignUp(true)}>
+              <Text style={{color:'#fda036',fontWeight:'600',fontSize:12}}>Sign Up</Text>
+             </TouchableOpacity>
+            </View>
+          </View>
+          <TouchableOpacity style={styles.btn} onPress={()=>handleSubmit()}>
+              <Text style={{color:'white'}}>Login</Text>
+          </TouchableOpacity>
+         </View>
+        : //Sign UP Form
+          <View style={styles.container}>
           <View style={{alignSelf:'center',padding:30}}>
               <Text style={{fontSize:40,color:'#2661c7',fontWeight:'600'}}>Sign up</Text>
             </View>
@@ -52,20 +75,20 @@ const SignUp = () => {
             </View>
             <View style={styles.input_view}>
                 <TextInput style={styles.input} placeholder='Email' onChangeText={(x)=>setPhone(x)}/>
+            <View style={{marginTop:10, flexDirection:'row'}}>
+              <Text style={{fontSize:12,color:'#2661c7',fontWeight:'600'}}>Already have an account?</Text>
+              <TouchableOpacity onPress={()=>setSignUp(false)}>
+               <Text style={{fontSize:12,color:'#fda036',fontWeight:'600'}}> Login</Text>
+              </TouchableOpacity>
+            </View>
             </View>
             <TouchableOpacity style={styles.btn} onPress={()=>handleSubmit()}>
                 <Text style={{color:'white'}}>Sign Up</Text>
             </TouchableOpacity>
-         </View>
-        : //OTP Form
-        <View style={styles.container}>
-        <View style={{alignSelf:'center',padding:30}}>
-            <Text style={{fontSize:40,color:'#2661c7',fontWeight:'600'}}>Code Screen</Text>
-          </View>
         </View>
         }
       </ImageBackground>
-      :
+      : //loader
       <ImageBackground source={require('../../assets/bg.png')} resizeMode='cover' style={styles.image}>
         <View style={{alignItems:'center'}}>
           <ActivityIndicator size={'large'} color={'#1A6DBB'} />
@@ -80,44 +103,40 @@ const SignUp = () => {
 export default SignUp
 
 const styles = StyleSheet.create({
-    container:{
-     alignSelf:'center',
-    },
-    txt:{
-     color:'#2661c7',
-     fontWeight:'500'
-    },
-    image: {
-     flex: 1,
-     justifyContent:'center'
-    },
-    input_view:{
-     margin:10,
-    },
-    input:{
-     width:300,
-     backgroundColor:'white',
-     borderRadius:5,
-     height:45,
-     padding:10,
-     shadowColor: "#000",
-     shadowOffset: {
-        width: 0,
-        height: 1,
-     },
-     shadowOpacity: 0.20,
-     shadowRadius: 1.41,
-     elevation: 2,
-    },
-    btn:{
-     marginTop:30,
-     alignSelf:'center',
-     borderRadius:5,
-     backgroundColor:'#2661c7',
-     paddingRight:45,
-     paddingLeft:45,
-     paddingTop:10,
-     paddingBottom:10,
-     width:'100%'
-    }
+container:{
+alignSelf:'center',
+},
+image: {
+  flex: 1,
+  justifyContent:'center'
+},
+input_view:{
+  margin:10,
+},
+input:{
+  width:300,
+  backgroundColor:'white',
+  borderRadius:5,
+  height:45,
+  padding:10,
+  shadowColor: "#000",
+  shadowOffset: {
+    width: 0,
+    height: 1,
+  },
+  shadowOpacity: 0.20,
+  shadowRadius: 1.41,
+  elevation: 2,
+},
+btn:{
+  marginTop:30,
+  alignSelf:'center',
+  borderRadius:5,
+  backgroundColor:'#2661c7',
+  paddingRight:45,
+  paddingLeft:45,
+  paddingTop:10,
+  paddingBottom:10,
+  width:'100%'
+},
 })
