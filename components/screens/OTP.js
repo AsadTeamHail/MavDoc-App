@@ -37,7 +37,7 @@ const OTPScreen = ({navigation}) => {
           axios
           .post(API.PostUserVerification,
             {
-              phone:'asadworkemail@gmail.com',
+              phone:phone,
               pass: code + code2 + code3 + code4,
               type:'customer'
             }).then((r)=>{
@@ -57,6 +57,7 @@ const OTPScreen = ({navigation}) => {
     }
   }
 
+  //storing values in asyncstorage
   const storeValues = async(token) => {
     let values = jwt_decode(token)
     console.log(values)
@@ -70,13 +71,13 @@ const OTPScreen = ({navigation}) => {
  
   return (
     <View style={{flex:1}}>
-      {!loading ? 
+      {!loading ? //codescreen
       <ImageBackground source={require('../../assets/bg.png')} resizeMode='cover' style={styles.image}>
         <View style={styles.container}>
         <View style={{alignItems:'center'}}>
           <Text style={{fontSize:20,color:'#2661c7',fontWeight:'600'}}>Verifying {phone}</Text>
-          <Text style={{fontSize:15,marginTop:10}}>We have just sent you a text message with code.</Text>
-          <Text style={{fontSize:15,}}>Please enter the 4 digit code.</Text>
+          <Text style={{fontSize:15,marginTop:10, color:'gray'}}>We have just sent you a text message with code.</Text>
+          <Text style={{fontSize:15,color:'gray'}}>Please enter the 4 digit code.</Text>
         </View>
         <View style={{alignSelf:'center', flexDirection:'row',marginTop:15}}>
           <Text style={{color:'#2661c7',fontWeight:'600',fontSize:16}}>{phone} </Text>
@@ -85,7 +86,6 @@ const OTPScreen = ({navigation}) => {
         <View style={{alignSelf:'center',padding:30}}>
           <View style={{flexDirection:'row'}}>
           <TextInput
-              keyboardType="numeric"
               ref={codeRef}
               onChangeText={pin1 => {
               setCode(pin1);
@@ -96,10 +96,11 @@ const OTPScreen = ({navigation}) => {
               maxLength={1}
               style={styles.input_code}
               placeholder="0"
+              placeholderTextColor={'gray'}
+              keyboardType="numeric"
           />
           <TextInput
               ref={code2Ref}
-              keyboardType="numeric"
               onChangeText={pin2 => {
               setCode2(pin2);
               if (pin2 != '') {
@@ -111,6 +112,8 @@ const OTPScreen = ({navigation}) => {
               maxLength={1}
               style={styles.input_code}
               placeholder="0"
+              placeholderTextColor={'gray'}
+              keyboardType="numeric"
           />
           <TextInput
               ref={code3Ref}
@@ -122,10 +125,11 @@ const OTPScreen = ({navigation}) => {
                   code2Ref.current.focus();
               }
               }}
-              keyboardType="numeric"
               maxLength={1}
               style={styles.input_code}
               placeholder="0"
+              placeholderTextColor={'gray'}
+              keyboardType="numeric"
           />
           <TextInput
               onChangeText={pin4 => {
@@ -137,15 +141,16 @@ const OTPScreen = ({navigation}) => {
               }
               }}
               ref={code4Ref}
-              keyboardType="numeric"
               maxLength={1}
               style={styles.input_code}
               placeholder="0"
+              placeholderTextColor={'gray'}
+              keyboardType="numeric"
           />
           </View>
           <View style={{flexDirection:'row', marginTop:10, alignItems:'center'}}>
             <Image source={require('../../assets/resend.png')} style={{height:30, width:30}}/>
-            <TouchableOpacity><Text> Resend Code.</Text></TouchableOpacity>
+            <TouchableOpacity><Text style={{color:'gray'}}> Resend Code.</Text></TouchableOpacity>
           </View>
         </View>
         <TouchableOpacity onPress={()=>handleVerification()} style={styles.btn}><Text style={{color:'white'}}>Verify</Text></TouchableOpacity>
@@ -155,7 +160,7 @@ const OTPScreen = ({navigation}) => {
       <ImageBackground source={require('../../assets/bg.png')} resizeMode='cover' style={styles.image}>
         <View style={{alignItems:'center'}}>
           <ActivityIndicator size={'large'} color={'#2661c7'} />
-          <Text>Please Wait</Text>
+          <Text style={{color:'gray'}}>Please Wait</Text>
         </View>
       </ImageBackground>
       }
@@ -174,6 +179,7 @@ image: {
   justifyContent:'center'
 }, 
 input_code: {
+color:'#2b2b2a',
 margin:8,
 padding: 15,
 fontSize: 22,

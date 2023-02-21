@@ -1,10 +1,13 @@
-import React,{useState} from 'react';
-import { StyleSheet,Text,View,ImageBackground,TextInput,TouchableOpacity,Alert,ActivityIndicator,Image} from 'react-native';
+import React,{useState, useEffect} from 'react';
+import { StyleSheet,Text,View,ImageBackground,TextInput,TouchableOpacity,Alert,ActivityIndicator,Image } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 
 import API from '../../api/index.json' //API imports from api folder/index.json
+import customerVerification from '../../functions/tokenVerification'; //external func import from functions folder
+import checkNetConnection from '../../functions/checkNetConnection';
 
-const SignUp = ({navigation}) => {
+const Auth = ({navigation}) => {
 
   //signup form states
   const [fullName, setFullName] = useState('')
@@ -14,6 +17,31 @@ const SignUp = ({navigation}) => {
   //condition states
   const [loading,setLoading] = useState(false)
   const [signUp,setSignUp] = useState(false)
+  const [connected,setConnected] = useState(false)
+
+  //Verifying connection & login status
+  useEffect(() => {
+    setLoading(true)
+    checkNetConnection(setConnected)//connection check
+    console.log(connected)
+    async function VerifyUser(){
+    if(connected === true){
+        let token = await AsyncStorage.getItem("@token");
+        customerVerification(token).then((r)=>{//customer verification
+          if(r.isLoggedIn === true){
+            navigation.navigate("Home")
+            setLoading(false)
+          }else {
+            setLoading(false)
+          }
+        })
+      }else if (connected !== true){
+        setLoading(false)
+        Alert.alert("Connection Error","Connect your device to the wifi or enable it.");
+      }
+    }
+    VerifyUser()
+  }, [connected])
 
   //signup req to API
   const handleSignUp = () => {
@@ -72,7 +100,7 @@ const SignUp = ({navigation}) => {
   return (
     <View style={{flex:1}}>
       {!loading ? 
-      <ImageBackground source={require('../../assets/bg.png')} resizeMode='cover' style={styles.image}>
+      <ImageBackground source={require('../../assets/bg.png')} resizeMode='cover' style={styles.bg_image}>
        {!signUp ? 
        //Login Form
         <View style={styles.container}>
@@ -80,7 +108,7 @@ const SignUp = ({navigation}) => {
             <Text style={{fontSize:40,color:'#2661c7',fontWeight:'600'}}>Login</Text>
           </View>
           <View style={styles.input_view}>
-            <TextInput style={styles.input} placeholder='Email' onChangeText={(x)=>setPhone(x)}/>
+            <TextInput style={styles.input} placeholderTextColor= 'gray' placeholder='Email' onChangeText={(x)=>setPhone(x)}/>
             <View style={{flexDirection:'row',marginTop:10}}>
             <Image source={require('../../assets/flag.png')} style={{height:12,width:12,top:3}}/>
             <Text style={{color:'#2661c7',fontWeight:'600',fontSize:12}}> Don't have an account? </Text>
@@ -99,13 +127,13 @@ const SignUp = ({navigation}) => {
               <Text style={{fontSize:40,color:'#2661c7',fontWeight:'600'}}>Sign up</Text>
             </View>
             <View style={styles.input_view}>
-                <TextInput style={styles.input} placeholder='Full name' onChangeText={(x)=>setFullName(x)}/>
+                <TextInput style={styles.input} placeholderTextColor= 'gray' placeholder='Full name' onChangeText={(x)=>setFullName(x)}/>
             </View>
             <View style={styles.input_view}>
-                <TextInput style={styles.input} placeholder='Company' onChangeText={(x)=>setCompany(x)}/>
+                <TextInput style={styles.input} placeholderTextColor= 'gray' placeholder='Company' onChangeText={(x)=>setCompany(x)}/>
             </View>
             <View style={styles.input_view}>
-                <TextInput style={styles.input} placeholder='Email' onChangeText={(x)=>setPhone(x)}/>
+                <TextInput style={styles.input} placeholderTextColor= 'gray' placeholder='Email' onChangeText={(x)=>setPhone(x)}/>
             <View style={{marginTop:10, flexDirection:'row'}}>
               <Text style={{fontSize:12,color:'#2661c7',fontWeight:'600'}}>Already have an account?</Text>
               <TouchableOpacity onPress={()=>setSignUp(false)}>
@@ -116,14 +144,14 @@ const SignUp = ({navigation}) => {
             <TouchableOpacity style={styles.btn} onPress={()=>handleSignUp()}>
                 <Text style={{color:'white'}}>Sign Up</Text>
             </TouchableOpacity>
-        </View>
+          </View>
         }
       </ImageBackground>
       : //loader
-      <ImageBackground source={require('../../assets/bg.png')} resizeMode='cover' style={styles.image}>
+      <ImageBackground source={require('../../assets/bg.png')} resizeMode='cover' style={styles.bg_image}>
         <View style={{alignItems:'center'}}>
           <ActivityIndicator size={'large'} color={'#2661c7'} />
-          <Text>Please Wait</Text>
+          <Text style={{color:'gray'}}>Please Wait</Text>
         </View>
       </ImageBackground>
       }
@@ -131,13 +159,13 @@ const SignUp = ({navigation}) => {
   )
 }
 
-export default SignUp
+export default Auth
 
 const styles = StyleSheet.create({
 container:{
 alignSelf:'center',
 },
-image: {
+bg_image: {
   flex: 1,
   justifyContent:'center'
 },
@@ -145,6 +173,7 @@ input_view:{
   margin:10,
 },
 input:{
+  color:'#2b2b2a',
   width:300,
   backgroundColor:'white',
   borderRadius:5,

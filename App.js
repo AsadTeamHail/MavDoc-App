@@ -42,7 +42,7 @@ function App() {
             borderRadius:10,
             marginBottom:15,
             position: 'absolute',
-            left: 43,
+            left: 41,
             right: 0,
             bottom: 0,
             elevation: 0},
