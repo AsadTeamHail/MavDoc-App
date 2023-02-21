@@ -17,17 +17,17 @@ const Auth = ({navigation}) => {
   //condition states
   const [loading,setLoading] = useState(false)
   const [signUp,setSignUp] = useState(false)
-  const [connected,setConnected] = useState(false)
+  const [connected,setConnected] = useState(true)
 
   //Verifying connection & login status
   useEffect(() => {
     setLoading(true)
-    checkNetConnection(setConnected)//connection check
+    checkNetConnection(setConnected) //connection check
     console.log(connected)
     async function VerifyUser(){
     if(connected === true){
         let token = await AsyncStorage.getItem("@token");
-        customerVerification(token).then((r)=>{//customer verification
+        customerVerification(token).then((r)=>{ //customer verification
           if(r.isLoggedIn === true){
             navigation.navigate("Home")
             setLoading(false)
@@ -35,7 +35,8 @@ const Auth = ({navigation}) => {
             setLoading(false)
           }
         })
-      }else if (connected !== true){
+      } 
+      if (connected != true){
         setLoading(false)
         Alert.alert("Connection Error","Connect your device to the wifi or enable it.");
       }

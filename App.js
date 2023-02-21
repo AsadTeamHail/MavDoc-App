@@ -53,7 +53,7 @@ function App() {
               : undefined,
           })}>
 
-          <Tab.Screen
+          {/* <Tab.Screen
             name="Auth"
               options={{
                 headerShown: false,
@@ -69,7 +69,7 @@ function App() {
                 tabBarStyle: {display: 'none'}
               }}
             component={OTPScreen}
-          />
+          /> */}
 
            <Tab.Screen
             name="Test"
