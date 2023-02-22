@@ -12,6 +12,8 @@ import SettingScreen from './components/screens/Home';
 import TestScreen from './components/screens/Test';
 import AuthScreen from './components/screens/Auth'
 import OTPScreen from './components/screens/OTP';
+import AgreementScreen from './components/screens/Agreement';
+import NoWifiScreen from './components/screens/NoWifi';
 
 const theme = {
   ...DefaultTheme,
@@ -46,14 +48,14 @@ function App() {
             right: 0,
             bottom: 0,
             elevation: 0},
-            tabBarButton: ['Auth','OTP'].includes(route.name)
+            tabBarButton: ["Auth","OTP","Agreement","NoWifi"].includes(route.name)
               ? () => {
                   return null;
                 }
               : undefined,
           })}>
 
-          {/* <Tab.Screen
+          <Tab.Screen
             name="Auth"
               options={{
                 headerShown: false,
@@ -69,9 +71,39 @@ function App() {
                 tabBarStyle: {display: 'none'}
               }}
             component={OTPScreen}
-          /> */}
+          />
 
-           <Tab.Screen
+          <Tab.Screen
+            name="NoWifi"
+              options={{
+                headerShown: false,
+                tabBarStyle: {display: 'none'}
+              }}
+            component={NoWifiScreen}
+          /> 
+          
+          <Tab.Screen
+            name="Home"
+            options={{
+              headerShown: false,
+              tabBarShowLabel: false,
+              tabBarIcon: ({focused}) => (
+                <View>
+                  <Image
+                    source={require('./assets/homeicon.png')}
+                    style={{
+                      tintColor:'#d6b409',
+                      height: 35,
+                      width: 35,
+                    }}
+                  />
+                </View>
+              ),
+            }}
+            component={HomeScreen}
+          />
+
+          <Tab.Screen
             name="Test"
             options={{
               headerShown: false,
@@ -93,24 +125,12 @@ function App() {
           />
 
           <Tab.Screen
-            name="Home"
-            options={{
-              headerShown: false,
-              tabBarShowLabel: false,
-              tabBarIcon: ({focused}) => (
-                <View>
-                  <Image
-                    source={require('./assets/homeicon.png')}
-                    style={{
-                      tintColor:'#d6b409',
-                      height: 35,
-                      width: 35,
-                    }}
-                  />
-                </View>
-              ),
-            }}
-            component={HomeScreen}
+            name="Agreement"
+              options={{
+                headerShown: false,
+                tabBarStyle: {display: 'none'}
+              }}
+            component={AgreementScreen}
           />
 
           <Tab.Screen

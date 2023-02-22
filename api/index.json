@@ -1,6 +1,8 @@
 { 
-    "PostUserSignUp":"https://pinto-goldenrod-package.glitch.me/auth/signUp",
-    "PostUserLogin":"https://pinto-goldenrod-package.glitch.me/auth/login",
-    "PostUserVerification":"https://pinto-goldenrod-package.glitch.me/auth/verification",
-    "GetUserLoggedInVerification":"https://pinto-goldenrod-package.glitch.me/isLoggedInVerification"
+    "PostUserSignUp":"https://butter-dune-quiet.glitch.me/auth/signUp",
+    "PostUserLogin":"https://butter-dune-quiet.glitch.me/auth/login",
+    "PostUserVerification":"https://butter-dune-quiet.glitch.me/auth/verification",
+    "GetUserLoggedInVerification":"https://butter-dune-quiet.glitch.me/isLoggedInVerification",
+
+    "GetDocSubTypes":"https://butter-dune-quiet.glitch.me/docs/GetDocSubTypes"
 }

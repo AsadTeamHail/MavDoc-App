@@ -157,12 +157,12 @@ const OTPScreen = ({navigation}) => {
       </View>
     </ImageBackground>
     : //loader
-      <ImageBackground source={require('../../assets/bg.png')} resizeMode='cover' style={styles.image}>
+     <ImageBackground source={require('../../assets/bg.png')} resizeMode='cover' style={styles.image}>
         <View style={{alignItems:'center'}}>
           <ActivityIndicator size={'large'} color={'#2661c7'} />
           <Text style={{color:'gray'}}>Please Wait</Text>
         </View>
-      </ImageBackground>
+     </ImageBackground>
       }
   </View>
   )
