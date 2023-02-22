@@ -14,18 +14,18 @@ const Home = ({navigation}) => {
   return (
     <View style={{flex:1}}>
       <ImageBackground source={require('../../assets/bg.png')} resizeMode='cover' style={styles.bg_image}>
-        <View style={{alignItems:'center',bottom:40}}><Image style={styles.logo} source={require('../../assets/logo.png')}/></View>
+        <View style={{alignItems:'center',bottom:40}}><Image style={styles.logo} source={require('../../assets/images/icons/logo.png')}/></View>
         <View style={styles.container}>
           <TouchableOpacity style={styles.btn} onPress={()=>{navigation.navigate("Agreement",{doc_id:'6a0e99fd-3f07-4138-8940-177e407a5e48'})}}>             
-            <Image style={styles.btn_icons} source={require('../../assets/agreement.png')} />
+            <Image style={styles.btn_icons} source={require('../../assets/images/icons/agreement.png')} />
             <Text>Agreement & Contracts</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.btn}>            
-            <Image style={styles.btn_icons} source={require('../../assets/affidavit.png')} />
+            <Image style={styles.btn_icons} source={require('../../assets/images/icons/affidavit.png')} />
             <Text>Affidavit / Undertaking</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.btn}>            
-            <Image style={styles.btn_icons} source={require('../../assets/property.png')} />
+            <Image style={styles.btn_icons} source={require('../../assets/images/icons/property.png')} />
             <Text>Property Documents & Forms</Text>
           </TouchableOpacity>
         </View>

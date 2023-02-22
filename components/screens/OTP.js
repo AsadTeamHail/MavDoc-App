@@ -149,7 +149,7 @@ const OTPScreen = ({navigation}) => {
           />
           </View>
           <View style={{flexDirection:'row', marginTop:10, alignItems:'center'}}>
-            <Image source={require('../../assets/resend.png')} style={{height:30, width:30}}/>
+            <Image source={require('../../assets/images/icons/resend.png')} style={{height:30, width:30}}/>
             <TouchableOpacity><Text style={{color:'gray'}}> Resend Code.</Text></TouchableOpacity>
           </View>
         </View>

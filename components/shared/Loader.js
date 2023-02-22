@@ -5,7 +5,7 @@ const loader = () => {
   return (
   <ImageBackground source={require('../../assets/bg.png')} resizeMode='cover' style={styles.bg_image}>
     <View style={{alignItems:'center',bottom:40}}>
-        <Image style={styles.logo} source={require('../../assets/logo.png')}/>
+        <Image style={styles.logo} source={require('../../assets/images/icons/logo.png')}/>
     </View>
     <View style={{justifyContent:'center',flex:0.8, alignItems:'center'}}>
       <ActivityIndicator size={'large'} color={'#2661c7'} />

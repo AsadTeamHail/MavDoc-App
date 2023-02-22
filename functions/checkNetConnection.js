@@ -1,15 +1,23 @@
+import React from "react";
 import NetInfo from "@react-native-community/netinfo";
 import { Alert } from "react-native";
 
 
-const checkNetConnection = ({setConnected,navigation}) => {
+
+const checkNetConnection = ({setConnected,navigation},route) => {
     let result = ''
-     NetInfo.fetch().then(state => {
+    NetInfo.fetch().then(state => {
         if(state.isConnected){
-        return setConnected(true)
+            return setConnected(true)
         }else{
-        Alert.alert("Connection Error","Connect your device to the wifi or enable it.");
-        return setConnected(false), navigation.navigate("NoWifi")
+        console.log('hit', route)
+        if(route){
+            if(route.name === "NoWifi"){
+                setConnected(false)
+            }
+        }else{
+         return setConnected(false), navigation.navigate("NoWifi")
+        }
         }
     });
     return result

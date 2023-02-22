@@ -55,7 +55,7 @@ function App() {
               : undefined,
           })}>
 
-          <Tab.Screen
+          {/* <Tab.Screen
             name="Auth"
               options={{
                 headerShown: false,
@@ -71,16 +71,7 @@ function App() {
                 tabBarStyle: {display: 'none'}
               }}
             component={OTPScreen}
-          />
-
-          <Tab.Screen
-            name="NoWifi"
-              options={{
-                headerShown: false,
-                tabBarStyle: {display: 'none'}
-              }}
-            component={NoWifiScreen}
-          /> 
+          /> */}
           
           <Tab.Screen
             name="Home"
@@ -90,7 +81,7 @@ function App() {
               tabBarIcon: ({focused}) => (
                 <View>
                   <Image
-                    source={require('./assets/homeicon.png')}
+                    source={require('./assets/images/icons/homeicon.png')}
                     style={{
                       tintColor:'#d6b409',
                       height: 35,
@@ -111,7 +102,7 @@ function App() {
               tabBarIcon: ({focused}) => (
                 <View>
                   <Image
-                    source={require('./assets/filedown.png')}
+                    source={require('./assets/images/icons/filedown.png')}
                     style={{
                       tintColor:'#d6b409',
                       height: 35,
@@ -141,7 +132,7 @@ function App() {
               tabBarIcon: ({focused}) => (
                 <View>
                   <Image
-                    source={require('./assets/settings.png')}
+                    source={require('./assets/images/icons/settings.png')}
                     style={{
                       tintColor:'#d6b409',
                       height: 35,
@@ -153,6 +144,15 @@ function App() {
             }}
             component={SettingScreen}
           />
+
+          <Tab.Screen
+            name="NoWifi"
+              options={{
+                headerShown: false,
+                tabBarStyle: {display: 'none'}
+              }}
+            component={NoWifiScreen}
+          /> 
 
         </Tab.Navigator>
       </NavigationContainer>

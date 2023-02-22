@@ -37,6 +37,9 @@ const Auth = ({navigation}) => {
       }
     }
     VerifyUser()
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
   }, [connected])
 
   //signup req to API
@@ -101,12 +104,12 @@ const Auth = ({navigation}) => {
        //Login Form
         <View style={styles.container}>
           <View style={{alignSelf:'center',padding:30}}>
-            <Text style={{fontSize:40,color:'#2661c7',fontWeight:'600'}}>Login</Text>
+           <Image source={require('../../assets/images/icons/logo.png')}/>
           </View>
           <View style={styles.input_view}>
             <TextInput style={styles.input} placeholderTextColor= 'gray' placeholder='Email' onChangeText={(x)=>setPhone(x)}/>
             <View style={{flexDirection:'row',marginTop:10}}>
-            <Image source={require('../../assets/flag.png')} style={{height:12,width:12,top:3}}/>
+            <Image source={require('../../assets/images/icons/flag.png')} style={{height:12,width:12,top:3}}/>
             <Text style={{color:'#2661c7',fontWeight:'600',fontSize:12}}> Don't have an account? </Text>
              <TouchableOpacity onPress={()=>setSignUp(true)}>
               <Text style={{color:'#fda036',fontWeight:'600',fontSize:12}}>Sign Up</Text>
@@ -167,6 +170,7 @@ bg_image: {
 },
 input_view:{
   margin:10,
+  bottom:80
 },
 input:{
   color:'#2b2b2a',
@@ -193,6 +197,7 @@ btn:{
   paddingLeft:45,
   paddingTop:10,
   paddingBottom:10,
-  width:'100%'
+  width:'100%',
+  bottom:80
 },
 })

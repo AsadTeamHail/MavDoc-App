@@ -5,7 +5,7 @@ import axios from 'axios'
 
 import API from '../../api/index.json' //API import from APIs folder
 import Loader from '../shared/Loader' //Loader import from shared folder
-import checkNetConnection from '../../functions/checkNetConnection'
+import checkNetConnection from '../../functions/checkNetConnection' //import check netinfo function from functions folder
 
 const Agreement = ({navigation}) => {
 
@@ -38,11 +38,30 @@ const Agreement = ({navigation}) => {
   return (
     <View style={{flex:1}}>
    {!loading ? 
-     <ImageBackground source={require('../../assets/bg.png')} resizeMode='cover' style={styles.bg_image}>
-        <View style={{alignItems:'center',bottom:40}}><Image style={styles.logo} source={require('../../assets/logo.png')}/></View>
+     <ImageBackground source={require('../../assets/bg.png')} resizeMode='cover' style={{flex: 1}}>
+        <View style={{alignItems:'center',bottom:40}}><Image style={styles.logo} source={require('../../assets/images/icons/logo.png')}/></View>
         <View style={styles.container}>
-            {subDocuments.map((p)=>{return(
-                <Text>{p.title}</Text>
+          <Text style={styles.heading}>IMMOVABLES</Text>     
+            {subDocuments.map((p,index)=>{return(
+              <>
+              {p.mov_type === "immovable" && 
+              <TouchableOpacity key={index} style={styles.btn}>
+                <Image style={styles.icons} source={require('../../assets/images/icons/immovable.png')}/>
+                <Text style={styles.txt}>{p.title}</Text>
+                <Image style={styles.arrow} source={require('../../assets/images/icons/r_arrow.png')}/>
+              </TouchableOpacity>}
+            </>
+            )})}
+            <Text style={styles.heading}>MOVABLES</Text>     
+            {subDocuments.map((p,index)=>{return(
+              <>
+              {p.mov_type === "movable" && 
+              <TouchableOpacity key={index} style={styles.btn}>
+                <Image style={styles.icons} source={require('../../assets/images/icons/car.png')}/>
+                <Text style={styles.txt}>{p.title}</Text>
+                <Image style={styles.arrow} source={require('../../assets/images/icons/r_arrow.png')}/>
+              </TouchableOpacity>}
+            </>
             )})}
         </View>
       </ImageBackground>
@@ -57,15 +76,48 @@ export default Agreement
 
 const styles = StyleSheet.create({
 container:{
-  flex:0.9,
+  flex:0.8,
   justifyContent:'center', 
-  alignSelf:'center',
-},
-bg_image: {
- flex: 1,
+  alignItems:'center',
 },
 logo:{
   height:150,
   width:150
 },
+arrow:{
+position:'absolute',
+right:10,
+alignSelf:'center',
+height:25,
+width:25,
+},
+icons:{
+position:'absolute',
+left:10,
+alignSelf:'center',
+height:25,
+width:25,  
+},
+heading:{
+fontWeight:500,
+color:'#2b2b2a',
+fontSize:22,
+textAlign:'center',
+padding:10
+},
+txt:{
+  padding:10,
+  color:'white',
+  left:30,
+  fontSize:13
+},
+btn:{
+  margin:10,
+  padding:3,
+  width:300,
+  backgroundColor:'#2661c7',
+  borderRadius:5,
+  flexDirection:'row'
+},
+
 })
