@@ -1,0 +1,16 @@
+[
+{"input":"page","index":1},
+{"label":"Enter Landlord Name","input":"text","placeholder":"Enter Full Name"},
+{"label":"Enter Name","input":"text","placeholder":"Enter Name"},
+{"label":"Enter CNIC No","input":"number","placeholder":"Enter CNIC No"},
+{"label":"Enter Address","input":"text","placeholder":"Enter Address"},
+{"input":"page","index":2},
+{"label":"Enter Renter Name","input":"text","placeholder":"Enter Renter Name"},
+{"label":"Agreement Starting Date","input":"date","placeholder":"10/10/23"},
+{"label":"Agreement Ending Date","input":"date","placeholder":"10/10/23"},
+{"label":"Agreement Total Time Period","input":"text","placeholder":"TIME PERIOD"},
+{"label":"Mutually Agreed","input":"text","placeholder":"TOTAL RENT"},
+{"label":"Paid","input":"text","placeholder":"TOTAL ADVANCE RENT"},
+{"label":"Total","input":"text","placeholder":"TOTAL DEPOSIT AMOUNT"},
+{"label":"Other","input":"text","placeholder":"TOTAL DEPOSIT AMOUNT"}
+]

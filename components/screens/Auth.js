@@ -1,11 +1,12 @@
 import React,{useState, useEffect} from 'react';
-import { StyleSheet,Text,View,ImageBackground,TextInput,TouchableOpacity,Alert,ActivityIndicator,Image } from 'react-native';
+import { StyleSheet,Text,View,ImageBackground,TextInput,TouchableOpacity,Alert,ActivityIndicator,Image, LogBox } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 
 import API from '../../api/index.json' //API imports from api folder/index.json
 import customerVerification from '../../functions/tokenVerification'; //external func import from functions folder
-import checkNetConnection from '../../functions/checkNetConnection';
+import checkNetConnection from '../../functions/checkNetConnection'; //external func import from functions folder
+import Loader from '../shared/Loader';
 
 const Auth = ({navigation}) => {
 
@@ -34,8 +35,7 @@ const Auth = ({navigation}) => {
             setLoading(false)
           }
         })
-      }
-    }
+      }}
     VerifyUser()
     setTimeout(() => {
       setLoading(false);
@@ -45,6 +45,7 @@ const Auth = ({navigation}) => {
   //signup req to API
   const handleSignUp = () => {
     setLoading(true)
+    if(connected === true){
     if(phone.length>6 && fullName.length>3 && company.length>3){
       setTimeout(
         async function() {
@@ -65,7 +66,7 @@ const Auth = ({navigation}) => {
             }
           })
       }, 3000);
-    }
+    }}
     if(phone.length<6){
       Alert.alert("Email Error","Please Enter a valid email");
       setLoading(false);
@@ -122,9 +123,9 @@ const Auth = ({navigation}) => {
          </View>
         : //Sign UP Form
           <View style={styles.container}>
-          <View style={{alignSelf:'center',padding:30}}>
-              <Text style={{fontSize:40,color:'#2661c7',fontWeight:'600'}}>Sign up</Text>
-            </View>
+         <View style={{alignSelf:'center',padding:30}}>
+           <Image source={require('../../assets/images/icons/logo.png')}/>
+          </View>
             <View style={styles.input_view}>
                 <TextInput style={styles.input} placeholderTextColor= 'gray' placeholder='Full name' onChangeText={(x)=>setFullName(x)}/>
             </View>
@@ -147,12 +148,7 @@ const Auth = ({navigation}) => {
         }
       </ImageBackground>
       : //loader
-      <ImageBackground source={require('../../assets/bg.png')} resizeMode='cover' style={styles.bg_image}>
-        <View style={{alignItems:'center'}}>
-          <ActivityIndicator size={'large'} color={'#2661c7'} />
-          <Text style={{color:'gray'}}>Please Wait</Text>
-        </View>
-      </ImageBackground>
+        <Loader/>
       }
     </View>
   )

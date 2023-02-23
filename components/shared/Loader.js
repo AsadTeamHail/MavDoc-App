@@ -4,10 +4,7 @@ import React from 'react'
 const loader = () => {
   return (
   <ImageBackground source={require('../../assets/bg.png')} resizeMode='cover' style={styles.bg_image}>
-    <View style={{alignItems:'center',bottom:40}}>
-        <Image style={styles.logo} source={require('../../assets/images/icons/logo.png')}/>
-    </View>
-    <View style={{justifyContent:'center',flex:0.8, alignItems:'center'}}>
+    <View style={{justifyContent:'center',flex:1, alignItems:'center'}}>
       <ActivityIndicator size={'large'} color={'#2661c7'} />
       <Text style={{color:'gray'}}>Please Wait</Text>
     </View>

@@ -5,7 +5,8 @@ import axios from 'axios'
 
 import API from '../../api/index.json' //API import from APIs folder
 import Loader from '../shared/Loader' //Loader import from shared folder
-import checkNetConnection from '../../functions/checkNetConnection' //import check netinfo function from functions folder
+import checkNetConnection from '../../functions/checkNetConnection' //Import check netinfo func from functions folder
+import Header from '../shared/Header'//Header import from shared holder
 
 const Agreement = ({navigation}) => {
 
@@ -39,7 +40,7 @@ const Agreement = ({navigation}) => {
     <View style={{flex:1}}>
    {!loading ? 
      <ImageBackground source={require('../../assets/bg.png')} resizeMode='cover' style={{flex: 1}}>
-        <View style={{alignItems:'center',bottom:40}}><Image style={styles.logo} source={require('../../assets/images/icons/logo.png')}/></View>
+       <Header navigation={navigation}/>
         <View style={styles.container}>
           <Text style={styles.heading}>IMMOVABLES</Text>     
             {subDocuments.map((p,index)=>{return(
@@ -65,8 +66,10 @@ const Agreement = ({navigation}) => {
             )})}
         </View>
       </ImageBackground>
-      :
-     <Loader/> //Loader Component
+      ://Loader Component'
+     <>
+     <Loader/>
+     </> 
     }
     </View>
   )
@@ -76,13 +79,9 @@ export default Agreement
 
 const styles = StyleSheet.create({
 container:{
-  flex:0.8,
+  flex:0.5,
   justifyContent:'center', 
   alignItems:'center',
-},
-logo:{
-  height:150,
-  width:150
 },
 arrow:{
 position:'absolute',

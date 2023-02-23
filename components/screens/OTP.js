@@ -1,4 +1,4 @@
-import React,{useState,useRef} from 'react'
+import React,{useState,useRef,useEffect} from 'react'
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, ImageBackground, ActivityIndicator, Image, Alert} from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useRoute } from "@react-navigation/native"
@@ -6,6 +6,8 @@ import jwt_decode from "jwt-decode";
 import axios from 'axios'
 
 import API from '../../api/index.json' //API imports from api folder/index.json
+import checkNetConnection from '../../functions/checkNetConnection'; //external func import from shared folder
+import Loader from '../shared/Loader'; //external component import from shared folder
 
 const OTPScreen = ({navigation}) => {
 
@@ -27,10 +29,12 @@ const OTPScreen = ({navigation}) => {
   
   //conditional states
   const [loading, setLoading] = useState(false);
+  const [connected, setConnected] = useState(false);
 
   //Code Verificaion req to API
   const handleVerification = () => {
     setLoading(true)
+    if(connected === true){
     if(code.length>0 && code2.length>0 && code3.length>0 && code4.length>0){
       setTimeout(
         async function() {
@@ -50,13 +54,15 @@ const OTPScreen = ({navigation}) => {
             }
           })
       }, 3000);
-    }
+    }}
     if(code.length<1 && code2.length<1 && code3.length<1 && code4.length<1){
       Alert.alert("Enter the code","Please Enter the 4 Digit Code recieved on E-mail.");
       setLoading(false);
     }
   }
 
+  useEffect(() => {checkNetConnection({navigation,setConnected})}, [connected])
+  
   //storing values in asyncstorage
   const storeValues = async(token) => {
     let values = jwt_decode(token)
@@ -157,12 +163,7 @@ const OTPScreen = ({navigation}) => {
       </View>
     </ImageBackground>
     : //loader
-     <ImageBackground source={require('../../assets/bg.png')} resizeMode='cover' style={styles.image}>
-        <View style={{alignItems:'center'}}>
-          <ActivityIndicator size={'large'} color={'#2661c7'} />
-          <Text style={{color:'gray'}}>Please Wait</Text>
-        </View>
-     </ImageBackground>
+    <Loader/>
       }
   </View>
   )

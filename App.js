@@ -83,7 +83,7 @@ function App() {
                   <Image
                     source={require('./assets/images/icons/homeicon.png')}
                     style={{
-                      tintColor:'#d6b409',
+                      tintColor:'#fda036',
                       height: 35,
                       width: 35,
                     }}
@@ -104,7 +104,7 @@ function App() {
                   <Image
                     source={require('./assets/images/icons/filedown.png')}
                     style={{
-                      tintColor:'#d6b409',
+                      tintColor:'#fda036',
                       height: 35,
                       width: 35,
                     }}
@@ -134,7 +134,7 @@ function App() {
                   <Image
                     source={require('./assets/images/icons/settings.png')}
                     style={{
-                      tintColor:'#d6b409',
+                      tintColor:'#fda036',
                       height: 35,
                       width: 35,
                     }}
