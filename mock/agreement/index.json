@@ -1,8 +1,11 @@
 [
-  {
-    "title":{"name":"Agreement &  Contracts"},
-    "movable":{},
-    "immovable":{},
-    "fields":{}
-  }
+    [
+        {"title":"Agreement_&_Contracts", "type":"string"},
+        {"title":"Property_Documents", "type":"string"},
+        {"title":"Affidavit/Undertaking", "type":"string"}
+    ],
+    
+    [
+        {"docs":""}
+    ]
 ]

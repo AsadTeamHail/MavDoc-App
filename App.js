@@ -8,7 +8,7 @@ import SplashScreen from 'react-native-splash-screen';
 import {Image, View} from 'react-native';
 
 import HomeScreen from './components/screens/Home';
-import SettingScreen from './components/screens/Home';
+import SettingScreen from './components/screens/Settings';
 import TestScreen from './components/screens/Test';
 import AuthScreen from './components/screens/Auth'
 import OTPScreen from './components/screens/OTP';
@@ -72,28 +72,7 @@ function App() {
               }}
             component={OTPScreen}
           /> */}
-          
-          <Tab.Screen
-            name="Home"
-            options={{
-              headerShown: false,
-              tabBarShowLabel: false,
-              tabBarIcon: ({focused}) => (
-                <View>
-                  <Image
-                    source={require('./assets/images/icons/homeicon.png')}
-                    style={{
-                      tintColor:'#fda036',
-                      height: 35,
-                      width: 35,
-                    }}
-                  />
-                </View>
-              ),
-            }}
-            component={HomeScreen}
-          />
-
+        
           <Tab.Screen
             name="Test"
             options={{
@@ -113,6 +92,27 @@ function App() {
               ),
             }}
             component={TestScreen}
+          />
+
+         <Tab.Screen
+            name="Home"
+            options={{
+              headerShown: false,
+              tabBarShowLabel: false,
+              tabBarIcon: ({focused}) => (
+                <View>
+                  <Image
+                    source={require('./assets/images/icons/homeicon.png')}
+                    style={{
+                      tintColor:'#fda036',
+                      height: 35,
+                      width: 35,
+                    }}
+                  />
+                </View>
+              ),
+            }}
+            component={HomeScreen}
           />
 
           <Tab.Screen
