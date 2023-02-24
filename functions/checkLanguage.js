@@ -4,10 +4,18 @@ const checkLanguage = async (lang,) => {
     let language = await AsyncStorage.getItem('@lang')
 }
 
-const func = async (i,Ur,En) => {
+const func = async ({lang},Ur,En) => {
     // console.log(i,Ur,En)
-    const result =  await i=="en"?En:Ur
-    return result
+    let result = ''
+    if(lang==="en"){
+       result = await En
+       return result
+    }else if (lang==="ur"){
+        result = await Ur
+        return result
+    }
+
+ 
 };
 
 const styleFunc = async (i) => {

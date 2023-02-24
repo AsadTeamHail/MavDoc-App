@@ -18,10 +18,11 @@ const Home = ({navigation}) => {
 
   //checking and changing the language
   useLayoutEffect(() => {
+    console.log('En',En)
     checkLanguage()
   }, [])
   
-  func(lang,Ur,En).then(x=>{x?En:Ur})
+  func({lang},Ur,En).then(x=>{console.log(x)})
 
   
   return (
