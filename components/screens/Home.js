@@ -1,29 +1,23 @@
-import React,{useEffect, useState, useLayoutEffect} from 'react'
+import React,{useState, useLayoutEffect} from 'react'
 import { StyleSheet, Text, View, ImageBackground, TouchableOpacity, Image } from 'react-native'
+import { checkLanguage, langChange, langStyleFunc } from '../../functions/checkLanguage'
 
 import checkNetConnection from '../../functions/checkNetConnection'//external func import from functions folder
-import { checkLanguage, styleFunc, func, textEnStyle, textStyle } from '../../functions/checkLanguage'
 import En from '../../assets/locals/en/common.json'//English language import from assets
 import Ur from '../../assets/locals/ur/common.json'//Urdu language import from assets
 
 const Home = ({navigation}) => {
+  //string val state
+  const [lang, setLang] = useState(""); 
 
-  const [text, setText]=useState([])
-  const [lang, setLang]=useState("en");
+  //conditional states 
+  const [connected, setConnected] = useState(true); 
 
-  const [connected, setConnected] = useState(true) //conditional state for netcheck
-
-  //checking net connection
-  useEffect(() => {checkNetConnection({navigation,setConnected})}, [connected])
-
-  //checking and changing the language
+  //checking net connection and changing the language
   useLayoutEffect(() => {
-    console.log('En',En)
-    checkLanguage()
-  }, [])
-  
-  func({lang},Ur,En).then(x=>{console.log(x)})
-
+    checkNetConnection({navigation,setConnected})
+    checkLanguage({setLang})
+  }, [lang, connected])
   
   return (
     <View style={{flex:1}}>
@@ -35,22 +29,22 @@ const Home = ({navigation}) => {
         </TouchableOpacity>
         <View style={{alignItems:'center'}}><Image style={styles.logo} source={require('../../assets/images/icons/logo.png')}/></View>
         <View style={styles.container}>
-          <TouchableOpacity style={styles.btn} onPress={()=>{navigation.navigate("Agreement",{doc_id:'6a0e99fd-3f07-4138-8940-177e407a5e48'})}}>             
+          <TouchableOpacity style={styles.btn} onPress={()=>{navigation.navigate("Agreement",{lang})}}>             
             <Image style={styles.btn_icons} source={require('../../assets/images/icons/agreement.png')} />
-            <Text >
-              {func(lang)['Agreement & Contracts']}
+            <Text style={langStyleFunc(lang,Ur,En)}>
+              {langChange(lang,Ur,En)["Agreement & Contracts"]}
             </Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.btn}>            
             <Image style={styles.btn_icons} source={require('../../assets/images/icons/affidavit.png')} />
-            <Text style={styleFunc(lang)}>
-            {func(lang)['Affidavit / Undertaking']}
+            <Text style={langStyleFunc(lang,Ur,En)}>
+            {langChange(lang,Ur,En)['Affidavit / Undertaking']}
             </Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.btn}>            
             <Image style={styles.btn_icons} source={require('../../assets/images/icons/property.png')} />
-            <Text style={styleFunc(lang)}>
-            {func(lang)['Property Documents']}
+            <Text style={langStyleFunc(lang,Ur,En)}>
+            {langChange(lang,Ur,En)['Property Documents']}
             </Text>
           </TouchableOpacity>
         </View>

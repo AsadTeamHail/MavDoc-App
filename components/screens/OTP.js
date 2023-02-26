@@ -71,7 +71,7 @@ const OTPScreen = ({navigation}) => {
     await AsyncStorage.setItem('@token', token)
     await AsyncStorage.setItem('@phone', values.phone)
     await AsyncStorage.setItem('@company', values.company)
-    await AsyncStorage.setItem('@lang', 'Eng')
+    await AsyncStorage.setItem('@lang', 'En')
     setLoading(false)
     navigation.navigate("Home")
   }

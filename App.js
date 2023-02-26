@@ -3,17 +3,21 @@
 import * as React from 'react';
 import {NavigationContainer, DefaultTheme} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {createStackNavigator} from '@react-navigation/stack';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import SplashScreen from 'react-native-splash-screen';
 import {Image, View} from 'react-native';
-
+//Main Screens
 import HomeScreen from './components/screens/Home';
 import SettingScreen from './components/screens/Settings';
 import TestScreen from './components/screens/Test';
 import AuthScreen from './components/screens/Auth'
 import OTPScreen from './components/screens/OTP';
-import AgreementScreen from './components/screens/Agreement';
 import NoWifiScreen from './components/screens/NoWifi';
+import FormPricesScreen from './components/screens/FormPrices';
+//Agreement Screen & Forms
+import AgreementScreen from './components/screens/Agreement/index';
+import RentOrTenancy from './components/screens/Agreement/Forms/RentOrTenancy';
 
 const theme = {
   ...DefaultTheme,
@@ -48,7 +52,7 @@ function App() {
             right: 0,
             bottom: 0,
             elevation: 0},
-            tabBarButton: ["Auth","OTP","Agreement","NoWifi"].includes(route.name)
+            tabBarButton: ["Auth","OTP","Agreement","NoWifi","RentOrTenancy"].includes(route.name)
               ? () => {
                   return null;
                 }
@@ -125,6 +129,24 @@ function App() {
           />
 
           <Tab.Screen
+            name="FormPrices"
+              options={{
+                headerShown: false,
+                tabBarStyle: {display: 'none'}
+              }}
+            component={FormPricesScreen}
+          />
+
+          <Tab.Screen
+            name="RentOrTenancy"
+              options={{
+                headerShown: false,
+                tabBarStyle: {display: 'none'}
+              }}
+            component={RentOrTenancy}
+          />
+
+          <Tab.Screen
             name="Setting"
             options={{
               headerShown: false,
@@ -162,3 +184,22 @@ function App() {
 }
 
 export default App;
+
+const StackNav = () => {
+  
+  
+  const Stack = createStackNavigator();
+  
+  return (
+    <>
+      <Stack.Navigator screenOptions={{ headerShown: false}}>
+      <Stack.Screen name="Homecom"component={HomeCom}/>
+      <Stack.Screen name="WalkToEarn"component={WalkToEarnScreen}/>
+      <Stack.Screen name="Shop" component={ShopScreen} />
+      <Stack.Screen name="SearchItems" component={SearchItemsScreen} />
+      <Stack.Screen name="ShopsParam" component={ShopScreenTab} />
+     </Stack.Navigator>
+    </>
+  );
+}
+  export {StackNav}

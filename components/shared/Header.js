@@ -2,6 +2,8 @@ import { StyleSheet, Image, View, TouchableOpacity, Text } from 'react-native'
 import React from 'react'
 
 const Header = ({navigation}) => {
+
+  console.log()
   return (
     <View> 
      <View style={{flexDirection:'row'}}>

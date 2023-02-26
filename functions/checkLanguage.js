@@ -1,37 +1,42 @@
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
-const checkLanguage = async (lang,) => {
+const checkLanguage = async ({setLang}) => {//using asyncstorage value to check if language is urdu or eng
     let language = await AsyncStorage.getItem('@lang')
+    let result = ''
+    console.log(language)
+    if(language=='En'){
+        result = setLang('en')
+    }else if (language == 'Ur'){
+        result = setLang('ur')
+    }
+    return result
 }
 
-const func = async ({lang},Ur,En) => {
-    // console.log(i,Ur,En)
-    let result = ''
-    if(lang==="en"){
-       result = await En
-       return result
-    }else if (lang==="ur"){
-        result = await Ur
-        return result
-    }
-
- 
+const langChange = (lang,Ur,En) => { //passing parameters and changing json file eng/ur
+    let result = {}
+        if(lang==="en"){
+            AsyncStorage.setItem('@lang','En')
+            result = En;
+        }else if (lang==="ur"){
+            AsyncStorage.setItem('@lang','Ur')
+            result = Ur
+        }
+    console.log(result)
+    return result
 };
 
-const styleFunc = async (i) => {
-    return await i=="ur"?textStyle:textEnStyle;
-}
+const langStyleFunc =  (i) => {return i=="ur"?textStyle:textEnStyle;} //passing parameters and changing style eng/ur
 
 const textStyle = {
   fontFamily:'Urdu',
-  fontSize:25,
+  fontSize:18,
   lineHeight:30
  }
 
 const textEnStyle = {
-  fontSize:20,
+  fontSize:15,
   lineHeight:30
  }
 
 
-export  {checkLanguage,func,styleFunc,textStyle,textEnStyle}
+export  {checkLanguage,langChange,textStyle,textEnStyle,langStyleFunc}
