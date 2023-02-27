@@ -1,9 +1,8 @@
 [
     [
-        {"title":"Agreement of Rent or Tenancy", "type":"string", "doc":"immovable"},
-        {"title":"Agreement of Sale (Part Payment)", "type":"string", "doc":"immovable"},
-        {"title":"Agreement of Sale (Full & Final)", "type":"string", "doc":"immovable"},
-        {"title":"Agreement for Car Sale", "type":"string", "doc":"movable"},
-        {"title":"Agreement for Car Rent", "type":"string", "doc":"movable"}
+        {"title":"100 Rupees Stamp", "type":"string", "doc":"Agreement"},
+        {"title":"200 Rupees Stamp", "type":"string", "doc":"Agreement"},
+        {"title":"500 Rupees Stamp", "type":"string", "doc":"Agreement"},
+        {"title":"1000 Rupees Stamp", "type":"string", "doc":"Agreement"}
     ]
 ]

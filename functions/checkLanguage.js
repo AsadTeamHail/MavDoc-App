@@ -1,9 +1,11 @@
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import En from '../assets/locals/en/common.json'
+import Ur from '../assets/locals/ur/common.json'
 
 const checkLanguage = async ({setLang}) => {//using asyncstorage value to check if language is urdu or eng
     let language = await AsyncStorage.getItem('@lang')
     let result = ''
-    console.log(language)
+     console.log(language)
     if(language=='En'){
         result = setLang('en')
     }else if (language == 'Ur'){
@@ -12,7 +14,7 @@ const checkLanguage = async ({setLang}) => {//using asyncstorage value to check 
     return result
 }
 
-const langChange = (lang,Ur,En) => { //passing parameters and changing json file eng/ur
+const langChange = (lang) => { //passing parameters and changing json file eng/ur
     let result = {}
         if(lang==="en"){
             AsyncStorage.setItem('@lang','En')
@@ -21,7 +23,7 @@ const langChange = (lang,Ur,En) => { //passing parameters and changing json file
             AsyncStorage.setItem('@lang','Ur')
             result = Ur
         }
-    console.log(result)
+    // console.log(result)
     return result
 };
 

@@ -1,5 +1,13 @@
 
-    {
+    {   "English":"انگریزی",
+        "Urdu":"اردو",
+        "Agreement":"معاہدہ",
+        "Agreement Stamp Paper":"معاہدہ سٹیمپ پیپر",
+        "Select Agreement Language":"معاہدے کی زبان منتخب کریں۔",
+        "Movable":"حرکت پذیر",
+        "Immovable":"غیر منقولہ",
+        "Try Again":"دوبارہ کوشش کریں",
+        "Connect your device to the wifi or enable it":"اپنے موبائل کو وائی فائی سے جوڑیں یا اسے فعال کریں۔",
         "Agreement & Contracts":"معاہدہ اور معاہدے",
         "Property Documents":"جائیداد کے دستاویزات اور فارم ",
         "Affidavit / Undertaking":"حلف نامہ/انڈر ٹیکنگ",
@@ -7,5 +15,9 @@
         "Agreement of Sale (Part Payment)":"فروخت کا معاہدہ (جزوی ادائیگی)",
         "Agreement of Sale (Full & Final)":"فروخت کا معاہدہ (مکمل اور حتمی)",
         "Agreement for Car Sale":"کار کی فروخت کا معاہدہ",
-        "Agreement for Car Rent":"کار کرایہ کے لیے معاہدہ"
+        "Agreement for Car Rent":"کار کرایہ کے لیے معاہدہ",
+        "100 Rupees Stamp":"100 روپے کا ڈاک ٹکٹ",
+        "200 Rupees Stamp":"200 روپے کا ڈاک ٹکٹ",
+        "500 Rupees Stamp":"500 روپے کا ڈاک ٹکٹ",
+        "1000 Rupees Stamp":"1000 روپے کا ڈاک ٹکٹ"
     }

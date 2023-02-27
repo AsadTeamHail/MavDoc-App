@@ -1,5 +1,16 @@
 
     {
+        "English":"English",
+        "Agreement":"Agreement",
+        "Affidavit":"Affidavit",
+        "Property":"Property",
+        "Agreement Stamp Paper":"Agreement Stamp Paper",
+        "Select Agreement Language":"Select Agreement Language",
+        "Movable":"Movable",
+        "Immovable":"Immovable",
+        "Urdu":"Urdu",
+        "Try Again":"Try Again",
+        "Connect your device to the wifi or enable it":"Connect your device to the wifi or enable it.",
         "Agreement & Contracts":"Agreement & Contracts",
         "Property Documents":"Property Documents & Forms",
         "Affidavit / Undertaking":"Affidavit/Undertaking",
@@ -7,5 +18,10 @@
         "Agreement of Sale (Part Payment)":"Agreement of Sale (Part Payment)",
         "Agreement of Sale (Full & Final)":"Agreement of Sale (Full & Final)",
         "Agreement for Car Sale":"Agreement for Car Sale",
-        "Agreement for Car Rent":"Agreement for Car Rent"
+        "Agreement for Car Rent":"Agreement for Car Rent",
+        "100 Rupees Stamp":"100 Rupees Stamp",
+        "200 Rupees Stamp":"200 Rupees Stamp",
+        "500 Rupees Stamp":"500 Rupees Stamp",
+        "1000 Rupees Stamp":"1000 Rupees Stamp"
+        
     }

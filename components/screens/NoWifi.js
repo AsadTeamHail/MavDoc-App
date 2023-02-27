@@ -1,16 +1,22 @@
-import React,{useState,useEffect} from 'react'
+import React,{useState,useLayoutEffect} from 'react'
 import { StyleSheet, Text, View,ImageBackground,Image,TouchableOpacity, RefreshControl,ScrollView } from 'react-native'
-import checkNetConnection from '../../functions/checkNetConnection';
 import { useRoute } from '@react-navigation/native';
 
+import checkNetConnection from '../../functions/checkNetConnection';
+import { checkLanguage, langStyleFunc, langChange } from '../../functions/checkLanguage';
 
 const NoWifi = ({navigation}) => {
+  //langugage states
+  const [lang, setLang] = useState("")
+
   //Conditional States
   const [refreshing, setRefreshing] = useState(false);
   const [connected, setConnected] = useState(false);
 
   //initializing useRoute variable
   const route = useRoute() 
+
+  useLayoutEffect(() => {checkLanguage({setLang})}, [lang])
   
   //function to check connection and refresh
   const handleRefresh = () =>{
@@ -34,9 +40,11 @@ const NoWifi = ({navigation}) => {
           <RefreshControl colors={["#4169e1"]} refreshing={refreshing} onRefresh={handleRefresh}/>
         }>
           <Image style={styles.image} source={require('../../assets/images/icons/wifi.png')} />
-          <Text style={{fontWeight:500,color:'red',marginTop:20}}>No Wifi!<Text style={{fontWeight:500,color:'gray'}}> Connect your device to the wifi or enable it.</Text></Text>
+          <Text style={langStyleFunc(lang)}>
+            {langChange(lang)["Connect your device to the wifi or enable it"]}
+          </Text>
         <TouchableOpacity onPress={()=>{handleRefresh(),setRefreshing(true)}} style={styles.btn}>
-          <Text style={{color:'white'}}>Try Again</Text>
+          <Text style={{color:'white'}}>{langChange(lang)["Try Again"]}</Text>
           <Image style={{height:20,width:20,left:10}} source={require('../../assets/images/icons/reload.png')}/>
         </TouchableOpacity>
         </ScrollView>

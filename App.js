@@ -3,7 +3,7 @@
 import * as React from 'react';
 import {NavigationContainer, DefaultTheme} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {createStackNavigator} from '@react-navigation/stack';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import SplashScreen from 'react-native-splash-screen';
 import {Image, View} from 'react-native';
@@ -15,6 +15,7 @@ import AuthScreen from './components/screens/Auth'
 import OTPScreen from './components/screens/OTP';
 import NoWifiScreen from './components/screens/NoWifi';
 import FormPricesScreen from './components/screens/FormPrices';
+import StatusScreen from './components/screens/Status';
 //Agreement Screen & Forms
 import AgreementScreen from './components/screens/Agreement/index';
 import RentOrTenancy from './components/screens/Agreement/Forms/RentOrTenancy';
@@ -27,11 +28,28 @@ const theme = {
   },
 };
 
+
 function App() {
+  const [authorized, setAuthorized] = React.useState(false)
+  
   const Tab = createBottomTabNavigator();
+  
+  const CheckValues = async() => {
+    let user = await AsyncStorage.getItem('@user_id')
+    let token = await AsyncStorage.getItem('@token')
+    if (token === null && user === null){
+      console.log('con1',user, token)
+      setAuthorized(false)
+    }
+    if(token != null && user != null){
+      console.log('con2',user, token)
+      setAuthorized(true)
+    }
+  }
 
   React.useEffect(() => {
     SplashScreen.hide();
+    CheckValues()
   });
 
   return (
@@ -39,6 +57,7 @@ function App() {
     <SafeAreaProvider>
       <NavigationContainer>
         <Tab.Navigator
+        initialRouteName={authorized?"Auth":"Home"}
           screenOptions={({route}) => ({
             tabBarStyle: {
             backgroundColor: '#2661c7',
@@ -52,7 +71,7 @@ function App() {
             right: 0,
             bottom: 0,
             elevation: 0},
-            tabBarButton: ["Auth","OTP","Agreement","NoWifi","RentOrTenancy"].includes(route.name)
+            tabBarButton: ["Auth","OTP","Agreement","NoWifi","RentOrTenancy","FormPrices","Status"].includes(route.name)
               ? () => {
                   return null;
                 }
@@ -79,6 +98,12 @@ function App() {
         
           <Tab.Screen
             name="Test"
+            listeners={{
+              tabPress: e => {
+                // Prevent default action
+                e.preventDefault();
+              },
+            }}
             options={{
               headerShown: false,
               tabBarShowLabel: false,
@@ -136,6 +161,15 @@ function App() {
               }}
             component={FormPricesScreen}
           />
+   
+          <Tab.Screen
+            name="Status"
+              options={{
+                headerShown: false,
+                tabBarStyle: {display: 'none'}
+              }}
+            component={StatusScreen}
+          />
 
           <Tab.Screen
             name="RentOrTenancy"
@@ -148,6 +182,12 @@ function App() {
 
           <Tab.Screen
             name="Setting"
+            listeners={{
+              tabPress: e => {
+                // Prevent default action
+                e.preventDefault();
+              },
+            }}
             options={{
               headerShown: false,
               tabBarShowLabel: false,
@@ -184,22 +224,3 @@ function App() {
 }
 
 export default App;
-
-const StackNav = () => {
-  
-  
-  const Stack = createStackNavigator();
-  
-  return (
-    <>
-      <Stack.Navigator screenOptions={{ headerShown: false}}>
-      <Stack.Screen name="Homecom"component={HomeCom}/>
-      <Stack.Screen name="WalkToEarn"component={WalkToEarnScreen}/>
-      <Stack.Screen name="Shop" component={ShopScreen} />
-      <Stack.Screen name="SearchItems" component={SearchItemsScreen} />
-      <Stack.Screen name="ShopsParam" component={ShopScreenTab} />
-     </Stack.Navigator>
-    </>
-  );
-}
-  export {StackNav}

@@ -5,8 +5,6 @@ import { useRoute } from "@react-navigation/native"
 
 import checkNetConnection from '../../../functions/checkNetConnection' //Import check netinfo func from functions folder
 import Header from '../../shared/Header'//Header import from shared holder
-import En from '../../../assets/locals/en/common.json'//English language import from assets
-import Ur from '../../../assets/locals/ur/common.json'//Urdu language import from assets
 
 const Agreement = ({navigation}) => {
     //Props of language from home screen
@@ -16,21 +14,22 @@ const Agreement = ({navigation}) => {
     //Conditional States 
     const [connected, setConnected] = useState(true)
 
-    useEffect(() => { //Get req to API for agreement types
-      checkNetConnection({setConnected,navigation})
-    }, [connected])  
+     //Get req to API for agreement types
+    useEffect(() => {checkNetConnection({setConnected,navigation})}, [connected])  
 
   return (
     <View style={{flex:1}}>
      <ImageBackground source={require('../../../assets/bg.png')} resizeMode='cover' style={{flex: 1}}>
        <Header navigation={navigation}/>
         <View style={styles.container}>
-          <Text style={styles.heading}>IMMOVABLES</Text>     
-              <TouchableOpacity onPress={()=>{navigation.navigate("FormPrices"),{language}}} style={styles.btn}>
+          <Text style={langStyleFunc(language)}>
+          <Text style={styles.heading}>{langChange(language)["Immovable"]}</Text>     
+          </Text>
+              <TouchableOpacity onPress={()=>{navigation.navigate("FormPrices",{language:language, form:"Agreement"})}} style={styles.btn}>
                <Image style={styles.icons} source={require('../../../assets/images/icons/immovable.png')}/>
                 <Text style={styles.txt}>
-                <Text style={langStyleFunc(language,Ur,En)}>
-                {langChange(language,Ur,En)["Agreement of Rent or Tenancy"]}
+                <Text style={langStyleFunc(language)}>
+                {langChange(language)["Agreement of Rent or Tenancy"]}
                 </Text>
                 </Text>
                 <Image style={styles.arrow} source={require('../../../assets/images/icons/r_arrow.png')}/>
@@ -38,8 +37,8 @@ const Agreement = ({navigation}) => {
                <TouchableOpacity style={styles.btn}>
                 <Image style={styles.icons} source={require('../../../assets/images/icons/immovable.png')}/>
                 <Text style={styles.txt}>
-                <Text style={langStyleFunc(language,Ur,En)}>
-                {langChange(language,Ur,En)["Agreement of Sale (Part Payment)"]}
+                <Text style={langStyleFunc(language)}>
+                {langChange(language)["Agreement of Sale (Part Payment)"]}
                 </Text>
                 </Text>
                 <Image style={styles.arrow} source={require('../../../assets/images/icons/r_arrow.png')}/>
@@ -47,31 +46,33 @@ const Agreement = ({navigation}) => {
               <TouchableOpacity style={styles.btn}>
                 <Image style={styles.icons} source={require('../../../assets/images/icons/immovable.png')}/>
                 <Text style={styles.txt}>
-                <Text style={langStyleFunc(language,Ur,En)}>
-                {langChange(language,Ur,En)["Agreement of Sale (Full & Final)"]}
+                <Text style={langStyleFunc(language)}>
+                {langChange(language)["Agreement of Sale (Full & Final)"]}
                 </Text>
                 </Text>
                 <Image style={styles.arrow} source={require('../../../assets/images/icons/r_arrow.png')}/>
               </TouchableOpacity>
-            <Text style={styles.heading}>MOVABLES</Text>  
-             <TouchableOpacity style={styles.btn}>
-               <Image style={styles.icons} source={require('../../../assets/images/icons/car.png')}/>
-                <Text style={styles.txt}>
-                <Text style={langStyleFunc(language,Ur,En)}>
-                {langChange(language,Ur,En)["Agreement for Car Sale"]}
-                </Text>
-                </Text>
-                <Image style={styles.arrow} source={require('../../../assets/images/icons/r_arrow.png')}/>
-              </TouchableOpacity> 
-             <TouchableOpacity style={styles.btn}>
-               <Image style={styles.icons} source={require('../../../assets/images/icons/car.png')}/>
-                <Text style={styles.txt}>
-                <Text style={langStyleFunc(language,Ur,En)}>
-                {langChange(language,Ur,En)["Agreement for Car Rent"]}
-                </Text>
-                </Text>
-                <Image style={styles.arrow} source={require('../../../assets/images/icons/r_arrow.png')}/>
-              </TouchableOpacity> 
+          <Text style={langStyleFunc(language)}>
+          <Text style={styles.heading}>{langChange(language)["Movable"]}</Text>     
+          </Text>
+            <TouchableOpacity style={styles.btn}>
+              <Image style={styles.icons} source={require('../../../assets/images/icons/car.png')}/>
+              <Text style={styles.txt}>
+              <Text style={langStyleFunc(language)}>
+              {langChange(language)["Agreement for Car Sale"]}
+              </Text>
+              </Text>
+              <Image style={styles.arrow} source={require('../../../assets/images/icons/r_arrow.png')}/>
+            </TouchableOpacity> 
+            <TouchableOpacity style={styles.btn}>
+              <Image style={styles.icons} source={require('../../../assets/images/icons/car.png')}/>
+              <Text style={styles.txt}>
+              <Text style={langStyleFunc(language)}>
+              {langChange(language)["Agreement for Car Rent"]}
+              </Text>
+              </Text>
+              <Image style={styles.arrow} source={require('../../../assets/images/icons/r_arrow.png')}/>
+            </TouchableOpacity> 
         </View>
       </ImageBackground>
     </View>

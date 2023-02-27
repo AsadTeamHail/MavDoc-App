@@ -1,10 +1,8 @@
-import React,{useState, useLayoutEffect} from 'react'
-import { StyleSheet, Text, View, ImageBackground, TouchableOpacity, Image } from 'react-native'
+import React,{useState, useLayoutEffect, useEffect,} from 'react'
+import { StyleSheet, Text, View, ImageBackground, TouchableOpacity, Image, BackHandler, Alert } from 'react-native'
 import { checkLanguage, langChange, langStyleFunc } from '../../functions/checkLanguage'
 
 import checkNetConnection from '../../functions/checkNetConnection'//external func import from functions folder
-import En from '../../assets/locals/en/common.json'//English language import from assets
-import Ur from '../../assets/locals/ur/common.json'//Urdu language import from assets
 
 const Home = ({navigation}) => {
   //string val state
@@ -18,7 +16,8 @@ const Home = ({navigation}) => {
     checkNetConnection({navigation,setConnected})
     checkLanguage({setLang})
   }, [lang, connected])
-  
+  // BackHandler.addEventListener('hardwareBackPress', function() {return true})
+
   return (
     <View style={{flex:1}}>
       <ImageBackground source={require('../../assets/bg.png')} resizeMode='cover' style={styles.bg_image}>
@@ -31,20 +30,20 @@ const Home = ({navigation}) => {
         <View style={styles.container}>
           <TouchableOpacity style={styles.btn} onPress={()=>{navigation.navigate("Agreement",{lang})}}>             
             <Image style={styles.btn_icons} source={require('../../assets/images/icons/agreement.png')} />
-            <Text style={langStyleFunc(lang,Ur,En)}>
-              {langChange(lang,Ur,En)["Agreement & Contracts"]}
+            <Text style={langStyleFunc(lang)}>
+              {langChange(lang)["Agreement & Contracts"]}
             </Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.btn}>            
             <Image style={styles.btn_icons} source={require('../../assets/images/icons/affidavit.png')} />
-            <Text style={langStyleFunc(lang,Ur,En)}>
-            {langChange(lang,Ur,En)['Affidavit / Undertaking']}
+            <Text style={langStyleFunc(lang)}>
+            {langChange(lang)['Affidavit / Undertaking']}
             </Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.btn}>            
             <Image style={styles.btn_icons} source={require('../../assets/images/icons/property.png')} />
-            <Text style={langStyleFunc(lang,Ur,En)}>
-            {langChange(lang,Ur,En)['Property Documents']}
+            <Text style={langStyleFunc(lang)}>
+            {langChange(lang)['Property Documents']}
             </Text>
           </TouchableOpacity>
         </View>
