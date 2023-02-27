@@ -22,9 +22,10 @@ const Home = ({navigation}) => {
     <View style={{flex:1}}>
       <ImageBackground source={require('../../assets/bg.png')} resizeMode='cover' style={styles.bg_image}>
         <TouchableOpacity 
+        style={styles.langBtn}
           onPress={()=>setLanguage(language=="ur"?"en":"ur")}
         >
-          <Text>Click</Text>
+          <Text style={{textAlign:'center'}}>{language=="ur"?"English":"Urdu"}</Text>
         </TouchableOpacity>
         <View style={{alignItems:'center'}}><Image style={styles.logo} source={require('../../assets/images/icons/logo.png')}/></View>
         <View style={styles.container}>
@@ -62,6 +63,16 @@ container:{
 },
 bg_image: {
  flex: 1,
+},
+langBtn:{
+  borderColor:'#fda036',
+  borderWidth:1,
+  backgroundColor:'white',
+  width:70,
+  padding:5,
+  bottom:20,
+top:10,
+left:10
 },
 logo:{
   maxHeight:'27.8%',

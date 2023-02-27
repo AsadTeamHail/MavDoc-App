@@ -27,10 +27,13 @@ const checkLanguage = async ({setLanguage,language}) => {//using asyncstorage va
     let result = ''
     const Storedlanguage = await AsyncStorage.getItem('@lang')
     if(Storedlanguage !== null) {
-        console.log(Storedlanguage)
+       result = setLanguage(Storedlanguage)
+      }
+      if(Storedlanguage == null){
+        result = setLanguage("en")
       }
 
-    return result = setLanguage(Storedlanguage)
+    return result 
 }
     catch(e){
         console.log(e)
@@ -58,7 +61,7 @@ const langStyleFunc =  (i) => {return i=="ur"?textStyle:textEnStyle;} //passing 
 const textStyle = {
   fontFamily:'Urdu',
   fontSize:18,
-  lineHeight:30
+  lineHeight:30,
  }
 
 const textEnStyle = {

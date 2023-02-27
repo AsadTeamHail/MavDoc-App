@@ -117,7 +117,7 @@ txt:{
   padding:10,
   color:'white',
   left:30,
-  fontSize:13
+  fontSize:13,
 },
 btn:{
   margin:10,
@@ -125,7 +125,7 @@ btn:{
   width:320,
   backgroundColor:'#2661c7',
   borderRadius:5,
-  flexDirection:'row'
+  flexDirection:'row',
 },
 
 })

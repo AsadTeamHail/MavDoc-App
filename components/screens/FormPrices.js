@@ -17,8 +17,8 @@ const FormPrices = ({navigation}) => {
     const isFocused = useIsFocused()
 
     //State of selection
-    // const [agreementLanguage, setAgreementLanguage] = useState("")
-    // const [stampPaper, setStampPaper] = useState("")
+    const [agreementLanguage, setAgreementLanguage] = useState("")
+    const [stampPaper, setStampPaper] = useState("")
     const [language, setLanguage] = useState(lang)
 
     //State for array
