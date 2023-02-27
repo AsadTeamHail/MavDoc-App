@@ -41,11 +41,11 @@ const NoWifi = ({navigation}) => {
           <RefreshControl colors={["#4169e1"]} refreshing={refreshing} onRefresh={handleRefresh}/>
         }>
           <Image style={styles.image} source={require('../../assets/images/icons/wifi.png')} />
-          <Text style={langStyleFunc(lang)}>
-            {langChange(lang)["Connect your device to the wifi or enable it"]}
+          <Text style={langStyleFunc(language)}>
+            {langChange(language)["Connect your device to the wifi or enable it"]}
           </Text>
         <TouchableOpacity onPress={()=>{handleRefresh(),setRefreshing(true)}} style={styles.btn}>
-          <Text style={{color:'white'}}>{langChange(lang)["Try Again"]}</Text>
+          <Text style={{color:'white'}}>{langChange(language)["Try Again"]}</Text>
           <Image style={{height:20,width:20,left:10}} source={require('../../assets/images/icons/reload.png')}/>
         </TouchableOpacity>
         </ScrollView>

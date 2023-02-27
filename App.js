@@ -32,26 +32,11 @@ const theme = {
 
 
 function App() {
-  const [authorized, setAuthorized] = React.useState(false)
   
   const Tab = createBottomTabNavigator();
-  
-  const CheckValues = async() => {
-    let user = await AsyncStorage.getItem('@user_id')
-    let token = await AsyncStorage.getItem('@token')
-    if (token === null && user === null){
-      console.log('con1',user, token)
-      setAuthorized(false)
-    }
-    if(token != null && user != null){
-      console.log('con2',user, token)
-      setAuthorized(true)
-    }
-  }
 
   React.useEffect(() => {
     SplashScreen.hide();
-    CheckValues()
   });
 
   return (
@@ -59,7 +44,7 @@ function App() {
     <SafeAreaProvider>
       <NavigationContainer>
         <Tab.Navigator
-        initialRouteName={authorized?"Auth":"Home"}
+        initialRouteName={"Auth"}
           screenOptions={({route}) => ({
             tabBarHideOnKeyboard:true,
             tabBarStyle: {
@@ -81,7 +66,7 @@ function App() {
               : undefined,
           })}>
 
-          {/* <Tab.Screen
+          <Tab.Screen
             name="Auth"
               options={{
                 headerShown: false,
@@ -97,7 +82,7 @@ function App() {
                 tabBarStyle: {display: 'none'}
               }}
             component={OTPScreen}
-          /> */}
+          />
         
           <Tab.Screen
             name="Test"
