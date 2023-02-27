@@ -1,7 +1,8 @@
-import React,{useState,useEffect} from 'react'
+import React,{useState,useEffect, useLayoutEffect} from 'react'
 import { StyleSheet, Text, View, ImageBackground, TouchableOpacity, Image} from 'react-native'
 import { langChange, langStyleFunc} from '../../../functions/checkLanguage'
 import { useRoute } from "@react-navigation/native"
+import { useIsFocused } from '@react-navigation/native';
 
 import checkNetConnection from '../../../functions/checkNetConnection' //Import check netinfo func from functions folder
 import Header from '../../shared/Header'//Header import from shared holder
@@ -9,18 +10,22 @@ import Header from '../../shared/Header'//Header import from shared holder
 const Agreement = ({navigation}) => {
     //Props of language from home screen
     const route = useRoute()
-    const language = route.params?.lang
-
+    const lang = route.params?.language
+    
     //Conditional States 
     const [connected, setConnected] = useState(true)
+    const [language, setLanguage] = useState("")
+    const isFocused = useIsFocused()
 
      //Get req to API for agreement types
-    useEffect(() => {checkNetConnection({setConnected,navigation})}, [connected])  
+    useEffect(() => {
+      if(lang != null){setLanguage(lang)}
+      checkNetConnection({setConnected,navigation})}, [connected, isFocused])  
 
   return (
     <View style={{flex:1}}>
      <ImageBackground source={require('../../../assets/bg.png')} resizeMode='cover' style={{flex: 1}}>
-       <Header navigation={navigation}/>
+       <Header navigation={navigation} prevScreen={"Home"}/>
         <View style={styles.container}>
           <Text style={langStyleFunc(language)}>
           <Text style={styles.heading}>{langChange(language)["Immovable"]}</Text>     
