@@ -1,13 +1,12 @@
-import { StyleSheet, Image, View, TouchableOpacity, Text } from 'react-native'
+import { StyleSheet, Image, View, TouchableOpacity } from 'react-native'
 import React from 'react'
 
-const Header = ({navigation:{goBack}}) => {
-
-  console.log()
+const Header = ({navigation,prevScreen}) => {
+  
   return (
     <View> 
      <View style={{flexDirection:'row'}}>
-        <TouchableOpacity style={{top:25,left:20}} onPress={()=>{goBack()}}>
+        <TouchableOpacity style={{top:25,left:20}} onPress={()=>{navigation.navigate(prevScreen)}}>
         <Image style={{maxHeight:'10%',maxWidth:'20%'}} source={require('../../assets/images/icons/a_left.png')}/>
         </TouchableOpacity>
         <View style={{left:47}}>

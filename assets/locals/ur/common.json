@@ -1,5 +1,6 @@
 
-    {   "English":"انگریزی",
+    {  
+        "English":"انگریزی",
         "Urdu":"اردو",
         "Agreement":"معاہدہ",
         "Agreement Stamp Paper":"معاہدہ سٹیمپ پیپر",
@@ -19,5 +20,9 @@
         "100 Rupees Stamp":"100 روپے کا ڈاک ٹکٹ",
         "200 Rupees Stamp":"200 روپے کا ڈاک ٹکٹ",
         "500 Rupees Stamp":"500 روپے کا ڈاک ٹکٹ",
-        "1000 Rupees Stamp":"1000 روپے کا ڈاک ٹکٹ"
+        "1000 Rupees Stamp":"1000 روپے کا ڈاک ٹکٹ",
+        "100 Rupees Affidavit":"100 روپے کا ڈاک ٹکٹ",
+        "200 Rupees Affidavit":"200 روپے کا ڈاک ٹکٹ",
+        "500 Rupees Affidavit":"500 روپے کا ڈاک ٹکٹ",
+        "1000 Rupees Affidavit":"1000 روپے کا ڈاک ٹکٹ"
     }

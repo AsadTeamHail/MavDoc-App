@@ -19,6 +19,8 @@ import StatusScreen from './components/screens/Status';
 //Agreement Screen & Forms
 import AgreementScreen from './components/screens/Agreement/index';
 import RentOrTenancy from './components/screens/Agreement/Forms/RentOrTenancy';
+//Affidavit Screen & Forms
+import AffidavitScreen from './components/screens/Affidavit/index';
 
 const theme = {
   ...DefaultTheme,
@@ -59,6 +61,7 @@ function App() {
         <Tab.Navigator
         initialRouteName={authorized?"Auth":"Home"}
           screenOptions={({route}) => ({
+            tabBarHideOnKeyboard:true,
             tabBarStyle: {
             backgroundColor: '#2661c7',
             maxWidth:'88%',
@@ -152,6 +155,15 @@ function App() {
               }}
             component={AgreementScreen}
           />
+
+          {/* <Tab.Screen
+            name="Affidavit"
+              options={{
+                headerShown: false,
+                tabBarStyle: {display: 'none'}
+              }}
+            component={AffidavitScreen}
+          /> */}
 
           <Tab.Screen
             name="FormPrices"

@@ -1,0 +1,8 @@
+[
+  [
+    {"title":"100 Rupees Affidavit", "type":"string", "doc":"Affidavit"},
+    {"title":"200 Rupees Affidavit", "type":"string", "doc":"Affidavit"},
+    {"title":"500 Rupees Affidavit", "type":"string", "doc":"Affidavit"},
+    {"title":"1000 Rupees Affidavit", "type":"string", "doc":"Affidavit"}
+  ]
+]

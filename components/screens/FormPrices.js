@@ -1,21 +1,25 @@
 import React,{useState,useEffect} from 'react'
 import { StyleSheet, Text, View, ImageBackground, TouchableOpacity, Image } from 'react-native'
 import {langChange, langStyleFunc } from '../../functions/checkLanguage'
+import { useIsFocused } from '@react-navigation/native';
 import { useRoute } from "@react-navigation/native"
 
 import Header from '../shared/Header' //importing Header from shared folder
 import checkNetConnection from '../../functions/checkNetConnection'//external func import from functions folder
 import AgreementPrices from '../../assets/agreement/index.json'//Agreement Stamps Json data
+import AffidavitPrices from '../../assets/affidavit/index.json'//Affidavit Stamps Json data
 
 const FormPrices = ({navigation}) => {
     //Props of language from home screen
     const route = useRoute()
-    const language = route.params?.language
+    const lang = route.params?.language
     const forms = route.params?.form
+    const isFocused = useIsFocused()
 
     //State of selection
-    const [agreementLanguage, setAgreementLanguage] = useState("")
-    const [stampPaper, setStampPaper] = useState("")
+    // const [agreementLanguage, setAgreementLanguage] = useState("")
+    // const [stampPaper, setStampPaper] = useState("")
+    const [language, setLanguage] = useState(lang)
 
     //State for array
     const [stamps, setStamps] = useState([])
@@ -25,10 +29,11 @@ const FormPrices = ({navigation}) => {
     
     useEffect(() => { //Setting the state of array on regard of forms params
       checkNetConnection({setConnected,navigation})
+      if(lang != null ){setLanguage(lang)}
       if(forms == 'Agreement'){setStamps(AgreementPrices[0])}
-      if(forms == 'Affidavit'){setStamps(AgreementPrices[0])}
+      if(forms == 'Affidavit'){setStamps(AffidavitPrices[0])}
       if(forms == 'Property'){setStamps(AgreementPrices[0])}
-    }, [connected]) 
+    }, [connected, isFocused]) 
 
     //checking values and navigating to the status screen.
     // useEffect(() => {
@@ -40,7 +45,7 @@ const FormPrices = ({navigation}) => {
   return (
     <View style={{flex:1}}>
     <ImageBackground source={require('../../assets/bg.png')} resizeMode='cover' style={{flex: 1}}>
-      <Header navigation={navigation}/>
+      <Header navigation={navigation} prevScreen={"Agreement"}/>
        <View style={styles.container}>
         <View style={langStyleFunc(language)}>
          <Text style={styles.heading}>{langChange(language)[`${forms} Stamp Paper`]}</Text>     

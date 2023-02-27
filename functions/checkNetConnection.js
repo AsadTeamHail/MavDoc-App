@@ -4,7 +4,7 @@ const checkNetConnection = ({setConnected,navigation},route) => {
     let result = ''
     NetInfo.fetch().then(state => {
         if(state.isConnected){
-            console.log('hit', route)
+            // console.log('hit', route)
             return setConnected(true)
         }else{
             console.log('hit', route)

@@ -7,7 +7,7 @@ import { checkLanguage, langStyleFunc, langChange } from '../../functions/checkL
 
 const NoWifi = ({navigation}) => {
   //langugage states
-  const [lang, setLang] = useState("")
+  const [language, setLanguage] = useState("")
 
   //Conditional States
   const [refreshing, setRefreshing] = useState(false);
@@ -16,7 +16,8 @@ const NoWifi = ({navigation}) => {
   //initializing useRoute variable
   const route = useRoute() 
 
-  useLayoutEffect(() => {checkLanguage({setLang})}, [lang])
+  //checking selected language
+  useLayoutEffect(() => {checkLanguage({setLanguage})}, [language])
   
   //function to check connection and refresh
   const handleRefresh = () =>{

@@ -2,26 +2,52 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 import En from '../assets/locals/en/common.json'
 import Ur from '../assets/locals/ur/common.json'
 
-const checkLanguage = async ({setLang}) => {//using asyncstorage value to check if language is urdu or eng
-    let language = await AsyncStorage.getItem('@lang')
+async function storeEng (val){ 
+    try {
+        await AsyncStorage.setItem('@lang',val)
+    
+      } catch (error) {
+        console.log(error);
+      }
+   }
+async function storeUr (val){ 
+    try {
+        
+        await AsyncStorage.setItem('@lang',val)
+    
+      } catch (error) {
+        console.log(error);
+      }
+   }
+
+   
+
+const checkLanguage = async ({setLanguage,language}) => {//using asyncstorage value to check if language is urdu or eng
+    try{    
     let result = ''
-     console.log(language)
-    if(language=='En'){
-        result = setLang('en')
-    }else if (language == 'Ur'){
-        result = setLang('ur')
+    const Storedlanguage = await AsyncStorage.getItem('@lang')
+    if(Storedlanguage !== null) {
+        console.log(Storedlanguage)
+      }
+
+    return result = setLanguage(Storedlanguage)
+}
+    catch(e){
+        console.log(e)
     }
-    return result
 }
 
-const langChange = (lang) => { //passing parameters and changing json file eng/ur
+const langChange = (language) => { //passing parameters and changing json file eng/ur
     let result = {}
-        if(lang==="en"){
-            AsyncStorage.setItem('@lang','En')
+        if(language==="en"){
             result = En;
-        }else if (lang==="ur"){
-            AsyncStorage.setItem('@lang','Ur')
+            let val ="en"
+            storeEng(val)
+        } 
+        if (language==="ur"){
             result = Ur
+            let val ="ur"
+            storeUr(val)
         }
     // console.log(result)
     return result
