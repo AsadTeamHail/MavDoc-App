@@ -32,19 +32,31 @@ const theme = {
 
 
 function App() {
-  
+  const[isSignedIn, setIsSignedIn] = React.useState(false)
   const Tab = createBottomTabNavigator();
 
   React.useEffect(() => {
     SplashScreen.hide();
+    checkUserLoggedIn()
   });
+
+ async function checkUserLoggedIn(){
+ let user = await AsyncStorage.getItem('@user_id')
+ let token = await AsyncStorage.getItem('@token')
+
+ if(user != null && token != null){
+  setIsSignedIn(true)
+ }
+ if(user == null && token == null)
+ setIsSignedIn(false)
+ }
 
   return (
     <>
     <SafeAreaProvider>
       <NavigationContainer>
         <Tab.Navigator
-        initialRouteName={"Auth"}
+        initialRouteName={isSignedIn?"Home":"Auth"}
           screenOptions={({route}) => ({
             tabBarHideOnKeyboard:true,
             tabBarStyle: {
@@ -65,7 +77,8 @@ function App() {
                 }
               : undefined,
           })}>
-
+      {!isSignedIn ? (
+        <>
           <Tab.Screen
             name="Auth"
               options={{
@@ -83,7 +96,9 @@ function App() {
               }}
             component={OTPScreen}
           />
-        
+        </>
+      ):(
+        <>
           <Tab.Screen
             name="Test"
             listeners={{
@@ -211,7 +226,9 @@ function App() {
                 tabBarStyle: {display: 'none'}
               }}
             component={NoWifiScreen}
-          /> 
+          />
+       </> 
+        )}
 
         </Tab.Navigator>
       </NavigationContainer>

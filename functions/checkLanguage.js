@@ -5,16 +5,13 @@ import Ur from '../assets/locals/ur/common.json'
 async function storeEng (val){ 
     try {
         await AsyncStorage.setItem('@lang',val)
-    
       } catch (error) {
         console.log(error);
       }
    }
 async function storeUr (val){ 
     try {
-        
         await AsyncStorage.setItem('@lang',val)
-    
       } catch (error) {
         console.log(error);
       }
@@ -26,12 +23,8 @@ const checkLanguage = async ({setLanguage,language}) => {//using asyncstorage va
     try{    
     let result = ''
     const Storedlanguage = await AsyncStorage.getItem('@lang')
-    if(Storedlanguage !== null) {
-       result = setLanguage(Storedlanguage)
-      }
-      if(Storedlanguage == null){
-        result = setLanguage("en")
-      }
+    if(Storedlanguage !== null) {result = setLanguage(Storedlanguage)}
+    if(Storedlanguage == null){result = setLanguage("en")}
 
     return result 
 }
@@ -66,7 +59,7 @@ const textStyle = {
 
 const textEnStyle = {
   fontSize:15,
-  lineHeight:30
+  lineHeight:30,
  }
 
 

@@ -11,8 +11,7 @@ const Agreement = ({navigation}) => {
     //Props of language from home screen
     const route = useRoute()
     const lang = route.params?.language
-    
-    //Conditional States 
+
     const [connected, setConnected] = useState(true)
     const [language, setLanguage] = useState("")
     const isFocused = useIsFocused()
@@ -20,7 +19,8 @@ const Agreement = ({navigation}) => {
      //Get req to API for agreement types
     useEffect(() => {
       if(lang != null){setLanguage(lang)}
-      checkNetConnection({setConnected,navigation})}, [connected, isFocused])  
+      checkNetConnection({setConnected,navigation})
+    }, [connected, isFocused])  
 
   return (
     <View style={{flex:1}}>
@@ -32,7 +32,7 @@ const Agreement = ({navigation}) => {
           </Text>
               <TouchableOpacity onPress={()=>{navigation.navigate("FormPrices",{language:language, form:"Agreement"})}} style={styles.btn}>
                <Image style={styles.icons} source={require('../../../assets/images/icons/immovable.png')}/>
-                <Text style={styles.txt}>
+                <Text style={language == "en" ? styles.eng:styles.urdu }>
                 <Text style={langStyleFunc(language)}>
                 {langChange(language)["Agreement of Rent or Tenancy"]}
                 </Text>
@@ -41,7 +41,7 @@ const Agreement = ({navigation}) => {
               </TouchableOpacity>
                <TouchableOpacity style={styles.btn}>
                 <Image style={styles.icons} source={require('../../../assets/images/icons/immovable.png')}/>
-                <Text style={styles.txt}>
+                <Text style={language == "en" ? styles.eng:styles.urdu }>
                 <Text style={langStyleFunc(language)}>
                 {langChange(language)["Agreement of Sale (Part Payment)"]}
                 </Text>
@@ -50,19 +50,19 @@ const Agreement = ({navigation}) => {
               </TouchableOpacity>
               <TouchableOpacity style={styles.btn}>
                 <Image style={styles.icons} source={require('../../../assets/images/icons/immovable.png')}/>
-                <Text style={styles.txt}>
+                <Text style={language == "en" ? styles.eng:styles.urdu }>
                 <Text style={langStyleFunc(language)}>
                 {langChange(language)["Agreement of Sale (Full & Final)"]}
                 </Text>
                 </Text>
                 <Image style={styles.arrow} source={require('../../../assets/images/icons/r_arrow.png')}/>
               </TouchableOpacity>
-          <Text style={langStyleFunc(language)}>
-          <Text style={styles.heading}>{langChange(language)["Movable"]}</Text>     
-          </Text>
+            <Text style={langStyleFunc(language)}>
+            <Text style={styles.heading}>{langChange(language)["Movable"]}</Text>     
+            </Text>
             <TouchableOpacity style={styles.btn}>
               <Image style={styles.icons} source={require('../../../assets/images/icons/car.png')}/>
-              <Text style={styles.txt}>
+              <Text style={language == "en" ? styles.eng:styles.urdu }>
               <Text style={langStyleFunc(language)}>
               {langChange(language)["Agreement for Car Sale"]}
               </Text>
@@ -71,7 +71,7 @@ const Agreement = ({navigation}) => {
             </TouchableOpacity> 
             <TouchableOpacity style={styles.btn}>
               <Image style={styles.icons} source={require('../../../assets/images/icons/car.png')}/>
-              <Text style={styles.txt}>
+              <Text style={language == "en" ? styles.eng:styles.urdu }>
               <Text style={langStyleFunc(language)}>
               {langChange(language)["Agreement for Car Rent"]}
               </Text>
@@ -89,8 +89,9 @@ export default Agreement
 const styles = StyleSheet.create({
 container:{
   flex:0.5,
-  justifyContent:'center', 
+  justifyContent:'center',
   alignItems:'center',
+  textAlign:'center'
 },
 arrow:{
 position:'absolute',
@@ -100,7 +101,6 @@ height:25,
 width:25,
 },
 icons:{
-position:'absolute',
 left:10,
 alignSelf:'center',
 height:25,
@@ -110,13 +110,24 @@ heading:{
 fontWeight:500,
 color:'#2b2b2a',
 fontSize:22,
-textAlign:'center',
 padding:10
 },
-txt:{
-  padding:10,
+eng:{
+  flex: 1, 
+  textAlign:'left',
+  left:10,
+  justifyContent: 'center',
+  padding:8,
   color:'white',
-  left:30,
+  fontSize:13,
+},
+urdu:{
+  flex: 1, 
+  textAlign:'right',
+  right:30,
+  justifyContent: 'center',
+  padding:8,
+  color:'white',
   fontSize:13,
 },
 btn:{
@@ -125,6 +136,7 @@ btn:{
   width:320,
   backgroundColor:'#2661c7',
   borderRadius:5,
+  alignItems:'center',
   flexDirection:'row',
 },
 
